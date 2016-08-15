@@ -1,0 +1,23 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jasmine": true,
+    "node": true
+  },
+  "rules": {
+    "import/no-unresolved": 1,
+    "global-require": 0,
+    "prefer-template": 1,
+    "max-len": [
+      "error",
+      120
+    ],
+    "new-cap": 0,
+    "react/prefer-stateless-function": 0,
+    "no-param-reassign": 1,
+    "no-nested-ternary": 1,
+    "import/no-extraneous-dependencies": 0
+  }
+}

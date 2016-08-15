@@ -1,0 +1,20 @@
+<div class="welcome">
+  <h2>Hello, this is demo page built using</h2>
+
+  <img src="img/angularjs-logo.png" width="300" />
+
+  <h3>With following tools</h3>
+
+  <md-button class="md-raised">Button</md-button>
+
+  <div class="welcome-list">
+    <div
+      class="welcome-list-item"
+      ng-repeat="item in welcome.items">
+
+      <h4>{{item.title}}</h4>
+      <img ng-src="{{item.image}}" />
+
+    </div>
+  </div>
+</div>
