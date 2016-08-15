@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1" />
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1" />
 
-  <base href="/" />
+    <base href="/" />
 
-  <title>Webpack App</title>
+    <title>Webpack App</title>
 
-  <link href="//fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic" rel="stylesheet" type="text/css" />
-  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link href="_assets/main.css" rel="stylesheet">
-</head>
+    <link href="//fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic" rel="stylesheet" type="text/css" />
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="_assets/main.css" rel="stylesheet">
+  </head>
 
-<body class="ng-cloak layout-row" layout="row"
-  data-ng-cloak
-  data-ng-class="containerClass"
->
-  <md-sidenav id="sidenav" class="md-sidenav-left md-whiteframe-z3"
-    md-component-id="left"
-    md-is-locked-open="$mdMedia('gt-md') && user"
-    data-ui-view="sidenav"
-  ></md-sidenav>
+  <body layout="row"
+    data-ng-cloak
+    data-ng-class="containerClass"
+  >
+    <md-sidenav id="sidenav" class="md-sidenav-left md-whiteframe-z3"
+      md-component-id="left"
+      md-is-locked-open="$mdMedia('gt-md') && user"
+      data-ui-view="sidenav"
+    ></md-sidenav>
 
-  <div id="container" class="layout-column" layout="column" role="main" flex>
-    <header id="header" data-ui-view="header">this!</header>
+    <div id="container" class="layout-column" layout="column" role="main" flex>
+      <header id="header" data-ui-view="header">this!</header>
 
-    <md-content class="layout-column md-whiteframe-z3" layout="column" flex md-scroll-y
-      data-ui-view="content"
-    ></md-content>
+      <md-content class="layout-column md-whiteframe-z3" layout="column" flex md-scroll-y
+        data-ui-view="content"
+      ></md-content>
 
-    <footer id="footer" data-ui-view="footer"></footer>
-  </div>
+      <footer id="footer" data-ui-view="footer"></footer>
+    </div>
 
-<div demo-welcome=""></div>
-
-<script src="_assets/main.js"></script>
-</body>
+    <script src="_assets/main.js"></script>
+  </body>
 </html>

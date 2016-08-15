@@ -8,18 +8,18 @@ export default class HeaderController {
   mdSidenav;
 
   constructor($state, $mdSidenav) {
-    this.$state = $state;
-    this.$mdSidenav = $mdSidenav;
+    this.state = $state;
+    this.mdSidenav = $mdSidenav;
   }
 
   profile($event) {
     $event.preventDefault();
     $event.stopPropagation();
 
-    this.$state.go('auth.profile');
+    this.state.go('auth.profile');
   }
 
   toggleSidenav() {
-    this.$mdSidenav('left').toggle();
+    this.mdSidenav('left').toggle();
   }
 }

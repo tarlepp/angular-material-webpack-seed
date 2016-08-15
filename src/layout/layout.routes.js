@@ -1,6 +1,8 @@
 'use strict';
 
 import HeaderController from './header/header.controller';
+import FooterController from './footer/footer.controller';
+import SidenavController from './sidenav/sidenav.controller';
 
 /**
  * @ngInject
@@ -13,12 +15,8 @@ export default function routing(RouterHelper) {
       abstract: true,
       views: {
         sidenav: {
-          template: '<div>sidenav</div>',
-          controller: function() {
-            var vm = this;
-
-            console.log('jeee');
-          },
+          template: require('./sidenav/sidenav.html'),
+          controller: SidenavController,
           controllerAs: 'vm'
         },
         header: {
@@ -27,12 +25,8 @@ export default function routing(RouterHelper) {
           controllerAs: 'vm'
         },
         footer: {
-          template: '<div>footer</div>',
-          controller: function() {
-            var vm = this;
-
-            console.log('jeee');
-          },
+          template: require('./footer/footer.html'),
+          controller: FooterController,
           controllerAs: 'vm'
         }
       }
