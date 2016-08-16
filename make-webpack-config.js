@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -193,6 +191,13 @@ module.exports = function (options) {
     output,
     target: 'web',
     module: {
+      preLoaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: ['eslint'],
+          include: path.join(__dirname, 'src'),
+        }
+      ],
       loaders: ignoreLoaders
         .concat(jsLoaders)
         .concat(defaultLoaders)
