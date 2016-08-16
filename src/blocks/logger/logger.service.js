@@ -1,9 +1,10 @@
-import angular from 'angular';
 import _ from 'lodash';
 
-class LoggerService {
+/**
+ * @ngInject
+ */
+export default class LoggerService {
   /**
-   * @ngInject
    * @param $log
    * @param $injector
    */
@@ -12,30 +13,58 @@ class LoggerService {
     this.$injector = $injector;
   }
 
+  /**
+   * @param {string}  message
+   * @param {object}  [data]
+   * @param {string}  [title]
+   */
   error(message, data = {}, title = '') {
     this.showToast(message, data, title);
     this.$log.error(['Error:', message].join(' '), data, title);
   }
 
+  /**
+   * @param {string}  message
+   * @param {object}  [data]
+   * @param {string}  [title]
+   */
   info(message, data = {}, title = '') {
     this.showToast(message, data, title);
     this.$log.info(['Info:', message].join(' '), data, title);
   }
 
+  /**
+   * @param {string}  message
+   * @param {object}  [data]
+   * @param {string}  [title]
+   */
   success(message, data = {}, title = '') {
     this.showToast(message, data, title);
-    this.$log.info(['Success:', message].join(' '), data, title);
+    this.$log.log(['Success:', message].join(' '), data, title);
   }
 
+  /**
+   * @param {string}  message
+   * @param {object}  [data]
+   * @param {string}  [title]
+   */
   warning(message, data = {}, title = '') {
     this.showToast(message, data, title);
     this.$log.warn(['Warning:', message].join(' '), data, title);
   }
 
+  /**
+   * @param {*} args
+   */
   log(...args) {
     this.$log.log(args);
   }
 
+  /**
+   * @param {string}  message
+   * @param {object}  [data]
+   * @param {string}  [title]
+   */
   showToast(message, data = {}, title = '') {
     this.$injector
       .get('$mdToast')
@@ -46,8 +75,3 @@ class LoggerService {
       ].join(' '));
   }
 }
-
-export default angular
-  .module('blocks.logger', [])
-  .service('LoggerService', LoggerService)
-  .name;

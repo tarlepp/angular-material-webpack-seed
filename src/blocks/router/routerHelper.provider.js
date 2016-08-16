@@ -1,8 +1,8 @@
-import angular from 'angular';
-
-class RouterHelper {
+/**
+ * @ngInject
+ */
+export default class RouterHelper {
   /**
-   * @ngInject
    * @param $locationProvider
    * @param $stateProvider
    * @param $urlRouterProvider
@@ -187,8 +187,3 @@ class RouterHelper {
     return service;
   }
 }
-
-export default angular
-  .module('blocks.router', [])
-  .provider('RouterHelper', RouterHelper)
-  .name;
