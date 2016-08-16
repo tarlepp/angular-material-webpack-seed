@@ -1,9 +1,7 @@
-'use strict';
-
 import angular from 'angular';
-import routing from './routing';
+import routes from './about.routes';
 
 export default angular
   .module('modules.about', [])
-  .run(routing)
+  .run(routes)
   .name;

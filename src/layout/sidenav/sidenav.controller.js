@@ -1,12 +1,9 @@
-'use strict';
-
-/**
- * @ngInject
- */
 export default class SidenavController {
-  state;
-  mdSidenav;
-
+  /**
+   * @ngInject
+   * @param $state
+   * @param $mdSidenav
+   */
   constructor($state, $mdSidenav) {
     this.state = $state;
     this.mdSidenav = $mdSidenav;

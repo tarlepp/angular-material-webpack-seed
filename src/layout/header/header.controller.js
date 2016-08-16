@@ -1,25 +1,22 @@
-'use strict';
-
-/**
- * @ngInject
- */
 export default class HeaderController {
-  state;
-  mdSidenav;
-
+  /**
+   * @ngInject
+   * @param $state
+   * @param $mdSidenav
+   */
   constructor($state, $mdSidenav) {
-    this.state = $state;
-    this.mdSidenav = $mdSidenav;
+    this.$state = $state;
+    this.$mdSidenav = $mdSidenav;
   }
 
   profile($event) {
     $event.preventDefault();
     $event.stopPropagation();
 
-    this.state.go('auth.profile');
+    this.$state.go('auth.profile');
   }
 
   toggleSidenav() {
-    this.mdSidenav('left').toggle();
+    this.$mdSidenav('left').toggle();
   }
 }

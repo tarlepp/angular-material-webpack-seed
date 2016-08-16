@@ -1,5 +1,3 @@
-'use strict';
-
 import HeaderController from './header/header.controller';
 import FooterController from './footer/footer.controller';
 import SidenavController from './sidenav/sidenav.controller';
@@ -9,7 +7,7 @@ import SidenavController from './sidenav/sidenav.controller';
  * @param RouterHelper
  */
 export default function routing(RouterHelper) {
-  let states = [{
+  const states = [{
     state: 'layout',
     config: {
       abstract: true,
@@ -17,20 +15,20 @@ export default function routing(RouterHelper) {
         sidenav: {
           template: require('./sidenav/sidenav.html'),
           controller: SidenavController,
-          controllerAs: 'vm'
+          controllerAs: 'vm',
         },
         header: {
           template: require('./header/header.html'),
           controller: HeaderController,
-          controllerAs: 'vm'
+          controllerAs: 'vm',
         },
         footer: {
           template: require('./footer/footer.html'),
           controller: FooterController,
-          controllerAs: 'vm'
-        }
-      }
-    }
+          controllerAs: 'vm',
+        },
+      },
+    },
   }];
 
   RouterHelper.configureStates(states);

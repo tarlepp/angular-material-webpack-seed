@@ -1,7 +1,7 @@
 {
   "name": "angular-material-webpack-seed",
   "version": "0.0.0",
-  "description": "angular+material project template",
+  "description": "angular+material+webpack project template",
   "main": "index.js",
   "engines": {
     "node": ">=6.0.0"
@@ -17,6 +17,9 @@
   "author": "Tarmo Leppänen <tarmo.leppanen@protacon.com>",
   "license": "MIT",
   "private": true,
+  "keywords": [
+    "angular", "material", "webpack"
+  ],
   "dependencies": {
     "angular": "^1.4.1",
     "angular-animate": "^1.5.8",
@@ -25,6 +28,8 @@
     "angular-material": "^1.1.0-rc.5",
     "angular-sanitize": "^1.5.8",
     "angular-ui-router": "^0.3.1",
+    "lodash": "^4.15.0",
+    "mdi": "^1.6.50",
     "ngstorage": "^0.3.11"
   },
   "devDependencies": {

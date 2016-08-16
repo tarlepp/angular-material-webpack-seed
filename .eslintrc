@@ -16,8 +16,14 @@
     ],
     "new-cap": 0,
     "react/prefer-stateless-function": 0,
-    "no-param-reassign": 1,
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
     "no-nested-ternary": 1,
+    "no-underscore-dangle": 0,
     "import/no-extraneous-dependencies": 0
   }
 }

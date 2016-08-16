@@ -80,7 +80,9 @@ module.exports = function (options) {
           chunkModules: true,
           exclude: excludeFromStats,
         });
+
         jsonStats.publicPath = publicPath;
+
         if (!options.prerender) {
           require('fs').writeFileSync(path.join(__dirname, 'build', 'stats.json'), JSON.stringify(jsonStats));
         } else {

@@ -1,23 +1,16 @@
 # Modern app seed for legacy Angular apps (1.x) 
 
-[![Build Status](https://travis-ci.org/zxbodya/angular-webpack-seed.svg?branch=master)](https://travis-ci.org/zxbodya/angular-webpack-seed)
-[![Coverage Status](https://coveralls.io/repos/zxbodya/angular-webpack-seed/badge.svg?branch=master&service=github)](https://coveralls.io/github/zxbodya/angular-webpack-seed?branch=master)
-[![codecov.io](https://codecov.io/github/zxbodya/angular-webpack-seed/coverage.svg?branch=master)](https://codecov.io/github/zxbodya/angular-webpack-seed?branch=master)
-
-It is quite opinionated, so feel free - to make suggestions to improve it.
-
 Includes following:
-
  - [webpack](http://webpack.github.io) (modules, assets bundling)
  - [babel](http://babeljs.io/) (ES2015 support)
  - [ng-annotate](https://github.com/olov/ng-annotate)
  - karma test runner configuration
 
-### Usage
+## Usage
 
 Note: NodeJS 6+ is required.
 
-1. Install dependencies `npm i`
+1. Install dependencies `npm install`
 2. Start dev server `npm run dev-server` open [http://localhost:2992](http://localhost:2992)
 3. Lint your code `npm run lint`
 4. Run unit tests `npm run test`
@@ -30,7 +23,6 @@ Note: NodeJS 6+ is required.
 [Angular Guide](https://docs.angularjs.org/guide)
 
 At first be sure that you are familiar with ES2015, some useful materials:
-
  - [tutorial from BabelJS](http://babeljs.io/docs/learn-es2015/)
  - [Exploring ES6: Upgrade to the next version of JavaScript by Dr. Axel Rauschmayer](http://exploringjs.com/)
   
@@ -43,7 +35,6 @@ At least briefly read [webpack documentation](http://webpack.github.io/docs/) it
 ## Usage advice 
 
 ### Directory layout
-
     ├── build              # build stats
     ├── public             # public folder (webroot for dev server)
     │   ├── _assets        # build results - assets packed by webpack
@@ -65,7 +56,7 @@ Application organisation rules:
 2. Keep modules small - if module is too big, maybe it should be few modules 
 3. Every file should have only one entity inside it, for example if there is directive which has controller and template - there should be three files, plus likely two for unit tests   
 4. Group related resources by folders
-5. Name files with suffixes `Directive`, `Controller`, `Factory`, `Service`, `Provider`
+5. Name files with suffixes `.directive`, `.controller`, `.factory`, `.service`, `.provider`
 6. Use `.test` suffix for test file names
 
 ### Directives

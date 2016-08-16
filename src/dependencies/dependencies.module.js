@@ -11,6 +11,6 @@ export default angular
   .module('dependencies', [
     angularAnimate, angularAria, angularLoadingBar, angularMaterial, angularSanitize,
     ngstorage.name, // see https://github.com/gsklee/ngStorage/pull/159
-    uiRouter
+    uiRouter,
   ])
   .name;
