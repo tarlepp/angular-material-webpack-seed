@@ -9,7 +9,7 @@ import ExceptionHandlerDecorator from './exceptionHandler.decorator';
  */
 export default angular
   .module('blocks.exception', [
-    logger
+    logger,
   ])
   .factory('ExceptionFactory', ExceptionFactory)
   .provider('ExceptionHandlerProvider', ExceptionHandlerProvider)
