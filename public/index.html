@@ -6,7 +6,7 @@
 
     <base href="/" />
 
-    <title>Webpack App</title>
+    <title data-ng-bind="title"></title>
 
     <link href="//fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic" rel="stylesheet" type="text/css" />
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -23,10 +23,10 @@
       data-ui-view="sidenav"
     ></md-sidenav>
 
-    <div id="container" class="layout-column" layout="column" role="main" flex>
-      <header id="header" data-ui-view="header">this!</header>
+    <div id="container" layout="column" role="main" flex>
+      <header id="header" data-ui-view="header"></header>
 
-      <md-content class="layout-column md-whiteframe-z3" layout="column" flex md-scroll-y
+      <md-content layout="column" flex md-scroll-y layout-fill
         data-ui-view="content"
       ></md-content>
 
