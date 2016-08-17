@@ -1,4 +1,6 @@
 const path = require('path');
+const fs = require('fs');
+const _ = require('lodash');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
@@ -71,6 +73,21 @@ module.exports = function (options) {
     /node_modules[\\\/]angular[\\\/]/,
   ];
 
+  let constants;
+
+  try {
+    constants = require('./src/config/config.json');
+  } catch (error) {
+    constants = {
+      "API_URL": process.env.API_URL || "http://localhost/",
+    }
+  }
+  _.forOwn(constants, (value, key) => {
+    constants[key] = JSON.stringify(value);
+  });
+
+  constants['VERSION'] = JSON.stringify(require('./package.json').version);
+
   const plugins = [
     function statsPlugin() {
       this.plugin('done', (stats) => {
@@ -89,6 +106,7 @@ module.exports = function (options) {
       });
     },
     new webpack.PrefetchPlugin('angular'),
+    new webpack.DefinePlugin(constants),
   ];
 
   if (options.commonsChunk && !options.cover) {

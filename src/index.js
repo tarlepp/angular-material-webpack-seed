@@ -9,16 +9,19 @@ import 'mdi/css/materialdesignicons.css';
 import './index.scss';
 
 // Application modules
+import appConfiguration from './app.config';
 import dependencies from './dependencies/dependencies.module';
 import core from './core/core.module';
 import layout from './layout/layout.module';
 import modules from './modules/modules.module';
 
-angular.module('app', [
+const app = angular.module('app', [
   dependencies,
   core,
   layout,
   modules,
 ]);
+
+appConfiguration(app);
 
 angular.bootstrap(document.documentElement, ['app']);

@@ -1,0 +1,8 @@
+/**
+ * Copy this file to 'config.json' and define all settings what your environment is using
+ *
+ * Also remember remove this comment block too :D
+ */
+{
+  "API_URL": "http://your_backend_url/"
+}
