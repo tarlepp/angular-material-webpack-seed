@@ -1,3 +1,31 @@
-<div>
-  this is content for about page.
-</div>
+<md-content class="md-padding" flex>
+  <div>
+    <h4 class="md-headline no-margin-top">angular-material-webpack-seed</h4>
+
+    <p>
+      This is seed application built using following.
+    </p>
+  </div>
+
+  <md-grid-list layout-fill
+    md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="5"
+    md-row-height="1:1"
+    md-gutter="12px"
+  >
+    <md-grid-tile class="md-whiteframe-z3 cursor-pointer"
+      ng-repeat="item in vm.items"
+      ng-click="vm.open(item)"
+    >
+      <md-grid-tile-header>
+        <h3>{{item.title}}</h3>
+      </md-grid-tile-header>
+
+      <img ng-src="{{item.image}}" alt="{{item.title}}" />
+
+      <md-grid-tile-footer>
+        <h3>{{item.url}}</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+  </md-grid-list>
+
+</md-content>
