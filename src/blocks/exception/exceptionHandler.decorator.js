@@ -10,7 +10,7 @@ export default function ($delegate, ExceptionHandler, LoggerService) {
     };
 
     // Create exception message
-    exception.message = appErrorPrefix + exception.message;
+    exception.message = [appErrorPrefix, exception.message].join(': ');
 
     $delegate(exception, cause);
 
