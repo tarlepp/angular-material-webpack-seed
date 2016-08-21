@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 /**
  * @ngInject
  */
@@ -20,6 +22,10 @@ export default class RouterHelper {
       docTitle: undefined,
       resolveAlways: {},
     };
+  }
+
+  configure(configOverride) {
+    angular.extend(this.config, configOverride);
   }
 
   /**
