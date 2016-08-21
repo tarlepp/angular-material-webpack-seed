@@ -1,7 +1,7 @@
 /**
  * @ngInject
  */
-export default class ExceptionHandlerProvider {
+export default class ExceptionHandler {
   constructor() {
     this.config = {
       appErrorPrefix: undefined,

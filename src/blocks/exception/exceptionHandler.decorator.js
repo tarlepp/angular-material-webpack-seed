@@ -1,9 +1,9 @@
 /**
  * @ngInject
  */
-export default function ($delegate, ExceptionHandlerProvider, LoggerService) {
+export default function ($delegate, ExceptionHandler, LoggerService) {
   return function decorator(exception, cause) {
-    const appErrorPrefix = ExceptionHandlerProvider.config.appErrorPrefix || '';
+    const appErrorPrefix = ExceptionHandler.config.appErrorPrefix || '';
     const errorData = {
       exception,
       cause,

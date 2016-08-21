@@ -1,7 +1,7 @@
 import angular from 'angular';
 import logger from './../logger/logger.module';
 import ExceptionFactory from './exception.factory';
-import ExceptionHandlerProvider from './exceptionHanler.provider';
+import ExceptionHandler from './exceptionHanler.provider';
 import ExceptionHandlerDecorator from './exceptionHandler.decorator';
 
 /**
@@ -12,7 +12,7 @@ export default angular
     logger,
   ])
   .factory('ExceptionFactory', ExceptionFactory)
-  .provider('ExceptionHandlerProvider', ExceptionHandlerProvider)
+  .provider('ExceptionHandler', ExceptionHandler)
   .config(($provide) => {
     $provide.decorator('$exceptionHandler', ExceptionHandlerDecorator);
   })
