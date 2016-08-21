@@ -11,7 +11,7 @@ Includes following:
 Note: NodeJS 6+ is required.
 
 1. Install dependencies `npm install`
-2. Start dev server `npm run dev-server` open [http://localhost:2992](http://localhost:2992)
+2. Start dev server `npm run dev-server` open [http://localhost:3000](http://localhost:3000)
 3. Lint your code `npm run lint`
 4. Run unit tests `npm run test`
 5. Create build for deployment `npm run build` for production build, or `npm run build-dev` for development build
@@ -19,16 +19,12 @@ Note: NodeJS 6+ is required.
 ---
 
 ## Getting started
-
-[Angular Guide](https://docs.angularjs.org/guide)
-
-At first be sure that you are familiar with ES2015, some useful materials:
- - [tutorial from BabelJS](http://babeljs.io/docs/learn-es2015/)
+ - [Angular Guide](https://docs.angularjs.org/guide)
+ - [Angular Style Guide](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md)
+ - [Tutorial from BabelJS](http://babeljs.io/docs/learn-es2015/)
  - [Exploring ES6: Upgrade to the next version of JavaScript by Dr. Axel Rauschmayer](http://exploringjs.com/)
-  
-Read [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) - it is important to know, what is good and what is not, and why. Likely later we will update eslint rules to match this requirements.
-
-At least briefly read [webpack documentation](http://webpack.github.io/docs/) it is crucial to understand how it works in general. 
+ - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+ - [webpack documentation](http://webpack.github.io/docs/) 
 
 ---
 
@@ -40,7 +36,19 @@ At least briefly read [webpack documentation](http://webpack.github.io/docs/) it
     │   ├── _assets        # build results - assets packed by webpack
     │   └── index.html     # one of app entry points, for dev server
     └── src                # app sources
-        ├── demo           # one of app modules
+        ├── blocks         # generic helpers
+        │   ├── exception  # exception handler
+        │   ├── logger     # logger
+        │   └── router     # router helper
+        ├── core           # application core module
+        ├── dependencies   # application dependencies module, specify 3rd party libraries here
+        ├── layout         # layout module for applicate
+        │   ├── footer     # footer module
+        │   ├── header     # header module
+        │   └── sidenav    # sidenav module
+        ├── modules        # Application modules, this is where you put your own modules
+        │   └── about      # Example about module
+        ├── app.config.js  # configuration for application, contains API URL and VERSION information
         ├── index.js       # app entry module
         ├── index.scss     # 
         └── index.test.js  # entry point for test karma
