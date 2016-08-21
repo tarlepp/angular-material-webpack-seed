@@ -7,10 +7,13 @@ import angularSanitize from 'angular-sanitize';
 import ngstorage from 'ngstorage';
 import uiRouter from 'angular-ui-router';
 
+import config from './dependencies.config';
+
 export default angular
   .module('dependencies', [
     angularAnimate, angularAria, angularLoadingBar, angularMaterial, angularSanitize,
     ngstorage.name, // see https://github.com/gsklee/ngStorage/pull/159
     uiRouter,
   ])
+  .config(config)
   .name;
