@@ -4,6 +4,7 @@ import angular from 'angular';
 import 'angular/angular-csp.css';
 import 'angular-material/angular-material.css';
 import 'mdi/css/materialdesignicons.css';
+import 'angular-loading-bar/build/loading-bar.css';
 
 // Main SCSS file for application
 import './index.scss';
