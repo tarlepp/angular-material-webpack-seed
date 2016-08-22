@@ -5,9 +5,11 @@ import angular from 'angular';
  */
 export default class RouterHelper {
   /**
-   * @param $locationProvider
-   * @param $stateProvider
-   * @param $urlRouterProvider
+   * Constructor for the class.
+   *
+   * @param {$locationProvider}   $locationProvider
+   * @param {$stateProvider}      $stateProvider
+   * @param {$urlRouterProvider}  $urlRouterProvider
    */
   constructor($locationProvider, $stateProvider, $urlRouterProvider) {
     this.$locationProvider = $locationProvider;
@@ -24,26 +26,31 @@ export default class RouterHelper {
     };
   }
 
+  /**
+   * Method to override default config values.
+   *
+   * @param {object} configOverride
+   */
   configure(configOverride) {
     angular.extend(this.config, configOverride);
   }
 
   /**
    * @ngInject
-   * @param $location
-   * @param $rootScope
-   * @param $state
-   * @param LoggerService
+   * @param {*}             $rootScope
+   * @param {$location}     $location
+   * @param {$state}        $state
+   * @param {LoggerService} LoggerService
    * @returns {{
    *    configureStates: configureStates,
    *    getStates: getStates,
    *    stateCounts: {
    *      errors: number,
-   *      changes: number
+   *      changes: number,
    *    }
    *  }}
    */
-  $get($location, $rootScope, $state, LoggerService) {
+  $get($rootScope, $location, $state, LoggerService) {
     const $urlRouterProvider = this.$urlRouterProvider;
     const $stateProvider = this.$stateProvider;
     const config = this.config;
@@ -114,7 +121,7 @@ export default class RouterHelper {
         _getDestination(toState),
         '. ',
         (error.data || ''),
-        '.<br />',
+        '<br />',
         (error.statusText || ''),
         ': ',
         (error.status || ''),
