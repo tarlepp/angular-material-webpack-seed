@@ -13,6 +13,7 @@ module.exports = function (options) {
   const defaultLoaders = [
     { test: /\.coffee$/, loaders: ['coffee-redux-loader'] },
     { test: /\.json5$/, loaders: ['json5-loader'] },
+    { test: /\.json$/, loaders: ['json-loader'] },
     { test: /\.txt$/, loaders: ['raw-loader'] },
     { test: /\.(png|jpg|jpeg|gif|svg)$/, loaders: ['url-loader?limit=10000'] },
     // {test: /\.(woff|woff2)$/, loaders: ['url-loader?limit=100000']},
