@@ -1,9 +1,17 @@
 /**
  * @ngInject
- * @param $rootScope
- * @param RouterHelper
+ * @param {*}             $rootScope
+ * @param {$state}        $state
+ * @param {$log}          $log
+ * @param {$localStorage} $localStorage
+ * @param {RouterHelper}  RouterHelper
+ * @param {AuthService}   AuthService
+ * @param {UserService}   UserService
  */
-export default ($rootScope, RouterHelper) => {
+export default (
+  $rootScope, $state, $log, $localStorage,
+  RouterHelper, AuthService, UserService
+) => {
   const states = [{
     state: '404',
     config: {
@@ -18,10 +26,29 @@ export default ($rootScope, RouterHelper) => {
     },
   }];
 
+  // Configure default routes + otherwise route
   RouterHelper.configureStates(states, '/404');
+
+  // Check user role for requested state
+  $rootScope.$on('$stateChangeStart', (event, toState) => {
+    if ({}.hasOwnProperty.call(toState.data || {}, 'access') &&
+      !AuthService.authorize(toState.data.access)
+    ) {
+      event.preventDefault();
+
+      $state.go('auth.login');
+
+      $log.debug('todo implement user role check!', toState.data);
+    }
+  });
 
   // Add success handler for route change
   $rootScope.$on('$stateChangeSuccess', (event, toState) => {
     $rootScope.containerClass = toState.containerClass;
+  });
+
+  // Watcher for user authentication status
+  $rootScope.$watch('isAuthenticated', () => {
+    $rootScope.user = UserService.getProfile();
   });
 };

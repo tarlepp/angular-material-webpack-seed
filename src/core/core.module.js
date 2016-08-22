@@ -2,6 +2,7 @@ import angular from 'angular';
 import exception from './../blocks/exception/exception.module';
 import logger from './../blocks/logger/logger.module';
 import router from './../blocks/router/router.module';
+import auth from './auth/auth.module';
 import interceptors from './interceptors/interceptors.module';
 import services from './services/services.module';
 import config from './core.config';
@@ -12,6 +13,7 @@ export default angular
     exception,
     logger,
     router,
+    auth,
     interceptors,
     services,
   ])
