@@ -1,5 +1,10 @@
 # Modern app seed for legacy Angular apps (1.x) 
 
+[![License](http://img.shields.io/:license-mit-blue.svg)](LICENSE)
+[![GitHub version](https://badge.fury.io/gh/tarlepp%2Fangular-material-webpack-seed.svg)](https://badge.fury.io/gh/tarlepp%2Fangular-material-webpack-seed)
+[![Dependency Status](https://david-dm.org/tarlepp/angular-material-webpack-seed.svg)](https://david-dm.org/tarlepp/angular-material-webpack-seed)
+[![devDependency Status](https://david-dm.org/tarlepp/angular-material-webpack-seed/dev-status.svg)](https://david-dm.org/tarlepp/angular-material-webpack-seed#info=devDependencies)
+
 Includes following:
  - [webpack](http://webpack.github.io) (modules, assets bundling)
  - [babel](http://babeljs.io/) (ES2015 support)
