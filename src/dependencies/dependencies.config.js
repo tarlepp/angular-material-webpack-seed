@@ -28,8 +28,6 @@ export default ($httpProvider, $mdThemingProvider, jwtOptionsProvider) => {
         return $localStorage.token;
       },
     ],
-    whiteListedDomains: [
-      config.API_URL,
-    ],
+    whiteListedDomains: [''].concat(config.WHITELIST_DOMAINS),
   });
 };

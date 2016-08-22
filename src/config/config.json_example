@@ -4,5 +4,6 @@
  * Also remember remove this comment block too :D
  */
 {
-  "API_URL": "http://your_backend_url/"
+  "API_URL": "http://your_backend_url/",
+  "WHITELIST_DOMAINS": []
 }
