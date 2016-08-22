@@ -1,21 +1,30 @@
+/**
+ * @ngInject
+ */
 export default class HeaderController {
   /**
-   * @ngInject
-   * @param $state
-   * @param $mdSidenav
+   * Constructor of the class
+   *
+   * @param {$state}      $state
+   * @param {$mdSidenav}  $mdSidenav
+   * @param {AuthService} AuthService
    */
-  constructor($state, $mdSidenav) {
+  constructor($state, $mdSidenav, AuthService) {
     this.$state = $state;
     this.$mdSidenav = $mdSidenav;
+    this.authService = AuthService;
   }
 
-  profile($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-
-    this.$state.go('auth.profile');
+  /**
+   * Method to logout current user.
+   */
+  logout() {
+    this.authService.logout();
   }
 
+  /**
+   * Method to toggle main side navigation component.
+   */
   toggleSidenav() {
     this.$mdSidenav('left').toggle();
   }

@@ -5,6 +5,15 @@
     <!-- fill up the space between left and right area -->
     <span flex></span>
 
-    <md-button ui-sref="auth.login">Login</md-button>
+    <div layout="row" ng-if="isAuthenticated">
+      <md-button ui-sref="auth.profile">{{user.username}}</md-button>
+
+      <md-button ng-click="vm.logout()">Logout</md-button>
+    </div>
+
+    <div layout="row" ng-if="!isAuthenticated">
+      <md-button ui-sref="auth.login">Login</md-button>
+    </div>
+
   </div>
 </md-toolbar>
