@@ -3,12 +3,13 @@ import angular from 'angular';
 /**
  * @ngInject
  *
- * @param $provide
- * @param $logProvider
- * @param RouterHelperProvider
- * @param ExceptionHandlerProvider
+ * @param {$provide}          $provide
+ * @param {$httpProvider}     $httpProvider
+ * @param {$logProvider}      $logProvider
+ * @param {RouterHelper}      RouterHelperProvider
+ * @param {ExceptionHandler}  ExceptionHandlerProvider
  */
-export default ($provide, $logProvider, RouterHelperProvider, ExceptionHandlerProvider) => {
+export default ($provide, $httpProvider, $logProvider, RouterHelperProvider, ExceptionHandlerProvider) => {
   /**
    * $log decorator function, this is needed to add filename and line number to each $log command.
    *
@@ -58,6 +59,9 @@ export default ($provide, $logProvider, RouterHelperProvider, ExceptionHandlerPr
 
     return $delegate;
   });
+
+  // Attach needed interceptors
+  $httpProvider.interceptors.push('ErrorInterceptor');
 
   if ($logProvider.debugEnabled) {
     $logProvider.debugEnabled(true);
