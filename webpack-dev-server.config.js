@@ -6,6 +6,7 @@ const config = makeWebpackConfig({
   devServer: {
     host: '0.0.0.0',
     port: 3000,
+    historyApiFallback: true,
   },
   devtool: 'inline-source-map',
   debug: true,
