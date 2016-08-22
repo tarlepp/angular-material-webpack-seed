@@ -1,4 +1,5 @@
 import AboutController from './about.controller';
+import UserRoles from './../../core/auth/constants/userRoles';
 
 /**
  * @ngInject
@@ -10,6 +11,9 @@ export default function routing(RouterHelper) {
     config: {
       url: '/',
       title: 'About',
+      data: {
+        access: UserRoles.ROLE_ANON,
+      },
       views: {
         'content@': {
           template: require('./about.html'),
