@@ -1,0 +1,48 @@
+<md-content class="md-padding" flex layout="column">
+  <div flex></div>
+
+  <div layout="row">
+    <div flex></div>
+
+    <div class="login md-padding md-whiteframe-z3">
+      <md-progress-circular ng-if="vm.loading" md-mode="indeterminate"></md-progress-circular>
+
+      <form name="loginForm" method="post" novalidate="novalidate" layout="column"
+        data-ng-submit="vm.login()"
+        data-ng-class="vm.loading ? 'opacity-50' : ''"
+      >
+        <h3 class="md-title text-center">Login</h3>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Username or email</label>
+
+          <md-icon>person</md-icon>
+
+          <input type="text" required="required"
+            data-ng-model="vm.credentials.username"
+            data-ng-disabled="vm.loading"
+          />
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Password</label>
+
+          <md-icon>security</md-icon>
+
+          <input type="password" required="required"
+            data-ng-model="vm.credentials.password"
+            data-ng-disabled="vm.loading"
+          />
+        </md-input-container>
+
+        <md-button class="md-raised md-primary" type="submit"
+          data-ng-disabled="!loginForm.$valid || vm.loading"
+        >Login</md-button>
+      </form>
+    </div>
+
+    <div flex></div>
+  </div>
+
+  <div flex></div>
+</md-content>
