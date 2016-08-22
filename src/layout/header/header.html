@@ -1,6 +1,17 @@
-<md-toolbar>
+<md-toolbar class="md-whiteframe-z3">
   <div class="md-toolbar-tools">
-    <md-button ui-sref="modules.about">angular-material-webpack-seed</md-button>
+    <md-button class="md-icon-button" aria-label="Navigation"
+      hide-gt-md
+      ng-click="vm.toggleSidenav()"
+    >
+      <md-icon>menu</md-icon>
+    </md-button>
+
+    <md-button
+      hide-sm
+      hide-xs
+      ui-sref="modules.about"
+    >angular-material-webpack-seed</md-button>
 
     <!-- fill up the space between left and right area -->
     <span flex></span>
@@ -14,6 +25,5 @@
     <div layout="row" ng-if="!isAuthenticated">
       <md-button ui-sref="auth.login">Login</md-button>
     </div>
-
   </div>
 </md-toolbar>

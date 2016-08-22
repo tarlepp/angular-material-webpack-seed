@@ -1,0 +1,16 @@
+footer {
+  md-toolbar {
+    min-height: 32px;
+
+    .md-toolbar-tools {
+      height: 32px;
+      max-height: 32px;
+      font-size: 12px;
+    }
+
+    .md-button {
+      font-size: 12px;
+      text-transform: inherit;
+    }
+  }
+}
