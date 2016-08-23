@@ -2,8 +2,8 @@ export default () => {};
 
 /**
  * @ngInject
- * @param UserService
- * @returns {*}
+ * @param {UserService} UserService
+ * @returns {Promise.<TResult>|*}
  */
 export function profileData(UserService) {
   return UserService
