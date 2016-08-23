@@ -1,5 +1,6 @@
 import ProfileController from './profile.controller';
 import UserRoles from './../constants/userRoles';
+import { profileData } from './profile.resolve';
 
 /**
  * @ngInject
@@ -21,9 +22,7 @@ export default function routing(RouterHelper) {
           controller: ProfileController,
           controllerAs: 'vm',
           resolve: {
-            _profileData: function resolve(UserService) {
-              return UserService.fetchProfile();
-            },
+            _profileData: profileData,
           },
         },
       },
