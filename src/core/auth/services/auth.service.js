@@ -41,12 +41,7 @@ export default class AuthService {
       .post(`${this.config.API_URL}auth/getToken`, credentials)
       .then(
         (response) => {
-          // Store JWT data
-          this.$localStorage.token = response.data.token;
-          this.$localStorage.refreshToken = response.data.refresh_token;
-
-          // Store authenticate state to authManager
-          this.authManager.authenticate();
+          this.storeTokenData(response.data);
 
           // Show successfully message to user
           this.logger.success('Logged in successfully.');
@@ -55,6 +50,39 @@ export default class AuthService {
         }
       )
     ;
+  }
+
+  /**
+   * Method to refresh expired JWT token.
+   *
+   * @param {string} refreshToken
+   * @returns {*|Promise.<TResult>}
+   */
+  refreshToken(refreshToken) {
+    return this.$http
+      .post(`${this.config.API_URL}auth/refreshToken`, { refresh_token: refreshToken }, { skipAuthorization: true })
+      .then(
+        (response) => {
+          this.storeTokenData(response.data);
+
+          return response;
+        }
+      )
+    ;
+  }
+
+  /**
+   * Method to store token data to local storage.
+   *
+   * @param {object} data
+   */
+  storeTokenData(data) {
+    // Store JWT data
+    this.$localStorage.token = data.token;
+    this.$localStorage.refreshToken = data.refresh_token;
+
+    // Store authenticate state to authManager
+    this.authManager.authenticate();
   }
 
   /**
