@@ -15,20 +15,18 @@ export default class ErrorInterceptor {
       message = response.data.error;
     } else if (response.data && response.data.message) {
       message = response.data.message;
+    } else if (typeof response.data === 'string') {
+      message = response.data;
+    } else if (response.statusText) {
+      message = response.statusText;
+    } else if (response.status === 0) {
+      message = [
+        'CORS error with url \'',
+        response.config.url,
+        '\'',
+      ].join();
     } else {
-      if (typeof response.data === 'string') {
-        message = response.data;
-      } else if (response.statusText) {
-        message = response.statusText;
-      } else if (response.status === 0) {
-        message = [
-          'CORS error with url \'',
-          response.config.url,
-          '\'',
-        ].join();
-      } else {
-        message = this.$injector.get('HttpStatusService').getStatusCodeText(response.status);
-      }
+      message = this.$injector.get('HttpStatusService').getStatusCodeText(response.status);
     }
 
     if (response.status !== 0) {
