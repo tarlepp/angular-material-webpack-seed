@@ -10,17 +10,20 @@ import 'angular-loading-bar/build/loading-bar.css';
 import './index.scss';
 
 // Application modules
-import appConfiguration from './app.config';
-import dependencies from './dependencies/dependencies.module';
 import core from './core/core.module';
+import dependencies from './dependencies/dependencies.module';
 import layout from './layout/layout.module';
 import modules from './modules/modules.module';
+import services from './services/services.module';
+
+import appConfiguration from './app.config';
 
 const app = angular.module('app', [
   dependencies,
   core,
   layout,
   modules,
+  services,
 ]);
 
 appConfiguration(app);
