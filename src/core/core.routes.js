@@ -2,17 +2,17 @@
  * @ngInject
  * @param {*}             $rootScope
  * @param {$state}        $state
- * @param {$log}          $log
  * @param {$localStorage} $localStorage
  * @param {jwtHelper}     jwtHelper
  * @param {RouterHelper}  RouterHelper
  * @param {AuthService}   AuthService
  * @param {UserService}   UserService
+ * @param {LoggerService} LoggerService
  */
 export default (
-  $rootScope, $state, $log, $localStorage,
+  $rootScope, $state, $localStorage,
   jwtHelper,
-  RouterHelper, AuthService, UserService
+  RouterHelper, AuthService, UserService, LoggerService
 ) => {
   const states = [{
     state: '404',
@@ -33,8 +33,8 @@ export default (
 
   let bypass;
 
-  // Check user role for requested state
-  $rootScope.$on('$stateChangeStart', (event, toState, toParams) => {
+  // Check user role for requested state + fetch new JWT if current one is expired
+  $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState) => {
     if (bypass) {
       bypass = false;
 
@@ -47,39 +47,37 @@ export default (
     const refreshToken = $localStorage.refreshToken;
 
     const checkState = () => {
-      $log.debug('checkState');
-
       bypass = true;
 
+      // User don't have access to this state,
       if ({}.hasOwnProperty.call(toState.data || {}, 'access') &&
           !AuthService.authorize(toState.data.access)
       ) {
-        $state.go('auth.login');
+        LoggerService.error(`You don't have access to '${toState.title}' page.`);
+
+        return fromState.abstract ? $state.go('auth.login') : $state.reload();
       }
 
-      $state.go(toState, toParams);
+      return $state.go(toState, toParams);
     };
 
     if (token) {
       if (!jwtHelper.isTokenExpired(token)) {
-        $log.debug('token not expired');
-
         checkState();
       } else {
-        $log.debug('token expired');
-
         AuthService
           .refreshToken(refreshToken)
-          .then((response) => {
-            $log.debug('got new token!', response);
+          .then(checkState)
+          .catch(() => {
+            bypass = true;
 
-            checkState();
+            LoggerService.success('Please login.');
+
+            AuthService.logout(true);
           })
         ;
       }
     } else {
-      $log.debug('no token...');
-
       checkState();
     }
   });

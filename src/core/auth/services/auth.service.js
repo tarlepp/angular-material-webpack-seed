@@ -60,10 +60,14 @@ export default class AuthService {
    */
   refreshToken(refreshToken) {
     return this.$http
-      .post(`${this.config.API_URL}auth/refreshToken`, { refresh_token: refreshToken }, { skipAuthorization: true })
+      .post(
+        `${this.config.API_URL}auth/refreshToken`,
+        { refresh_token: refreshToken },
+        { skipAuthorization: true, skipErrorMessage: true }
+      )
       .then(
         (response) => {
-          this.storeTokenData(response.data);
+          this.storeTokenData(response.data, true);
 
           return response;
         }
@@ -74,12 +78,16 @@ export default class AuthService {
   /**
    * Method to store token data to local storage.
    *
-   * @param {object} data
+   * @param {object}  data
+   * @param {boolean} [skipRefreshToken]
    */
-  storeTokenData(data) {
+  storeTokenData(data, skipRefreshToken = false) {
     // Store JWT data
     this.$localStorage.token = data.token;
-    this.$localStorage.refreshToken = data.refresh_token;
+
+    if (!skipRefreshToken) {
+      this.$localStorage.refreshToken = data.refresh_token;
+    }
 
     // Store authenticate state to authManager
     this.authManager.authenticate();
@@ -106,7 +114,7 @@ export default class AuthService {
   /**
    * Method to check if current user is authenticated or not.
    *
-   * @param {boolean} suppress
+   * @param {boolean} [suppress]
    */
   isAuthenticated(suppress = true) {
     if (!this.userService.getProfile() && !suppress) {
@@ -118,9 +126,13 @@ export default class AuthService {
 
   /**
    * Method to logout current user.
+   *
+   * @param {boolean} [suppress]
    */
-  logout() {
-    this.logger.success('Logged out successfully.');
+  logout(suppress = false) {
+    if (!suppress) {
+      this.logger.success('Logged out successfully.');
+    }
 
     // Reset local storage + un-authenticate current user
     this.$localStorage.$reset();
