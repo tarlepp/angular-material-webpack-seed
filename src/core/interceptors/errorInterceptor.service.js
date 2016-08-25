@@ -8,6 +8,8 @@ export default class ErrorInterceptor {
   }
 
   responseError = (response) => {
+    const skipErrorMessage = !response.config.skipErrorMessage;
+
     let message = '';
     let subTitle = '';
 
@@ -33,7 +35,7 @@ export default class ErrorInterceptor {
       subTitle = ['HTTP status', response.status].join(' ');
     }
 
-    if (message) {
+    if (message && skipErrorMessage) {
       this.$injector
         .get('LoggerService')
         .error(message, response, subTitle);
