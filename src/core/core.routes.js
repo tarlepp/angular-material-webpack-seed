@@ -4,12 +4,14 @@
  * @param {$state}        $state
  * @param {$log}          $log
  * @param {$localStorage} $localStorage
+ * @param {jwtHelper}     jwtHelper
  * @param {RouterHelper}  RouterHelper
  * @param {AuthService}   AuthService
  * @param {UserService}   UserService
  */
 export default (
   $rootScope, $state, $log, $localStorage,
+  jwtHelper,
   RouterHelper, AuthService, UserService
 ) => {
   const states = [{
@@ -29,16 +31,56 @@ export default (
   // Configure default routes + otherwise route
   RouterHelper.configureStates(states, '/404');
 
+  let bypass;
+
   // Check user role for requested state
-  $rootScope.$on('$stateChangeStart', (event, toState) => {
-    if ({}.hasOwnProperty.call(toState.data || {}, 'access') &&
-      !AuthService.authorize(toState.data.access)
-    ) {
-      event.preventDefault();
+  $rootScope.$on('$stateChangeStart', (event, toState, toParams) => {
+    if (bypass) {
+      bypass = false;
 
-      $state.go('auth.login');
+      return;
+    }
 
-      $log.debug('todo implement user role check!', toState.data);
+    event.preventDefault();
+
+    const token = $localStorage.token;
+    const refreshToken = $localStorage.refreshToken;
+
+    const checkState = () => {
+      $log.debug('checkState');
+
+      bypass = true;
+
+      if ({}.hasOwnProperty.call(toState.data || {}, 'access') &&
+          !AuthService.authorize(toState.data.access)
+      ) {
+        $state.go('auth.login');
+      }
+
+      $state.go(toState, toParams);
+    };
+
+    if (token) {
+      if (!jwtHelper.isTokenExpired(token)) {
+        $log.debug('token not expired');
+
+        checkState();
+      } else {
+        $log.debug('token expired');
+
+        AuthService
+          .refreshToken(refreshToken)
+          .then((response) => {
+            $log.debug('got new token!', response);
+
+            checkState();
+          })
+        ;
+      }
+    } else {
+      $log.debug('no token...');
+
+      checkState();
     }
   });
 
