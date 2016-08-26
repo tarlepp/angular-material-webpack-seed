@@ -128,6 +128,7 @@ export default class AuthService {
    * Method to logout current user.
    *
    * @param {boolean} [suppress]
+   * @returns {*|Promise.<TResult>}
    */
   logout(suppress = false) {
     if (!suppress) {
@@ -139,6 +140,6 @@ export default class AuthService {
     this.authManager.unauthenticate();
 
     // And redirect user back to login page
-    this.$state.go('auth.login');
+    return this.$state.go('auth.login');
   }
 }
