@@ -4,6 +4,10 @@ md-sidenav {
 
     &.sub-menu {
       border-color: rgba(0, 0, 0, .1);
+
+      &:last-child {
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+      }
     }
   }
 
@@ -14,7 +18,7 @@ md-sidenav {
 
     i {
       position: relative;
-      top: 3px;
+      top: 4px;
     }
   }
 

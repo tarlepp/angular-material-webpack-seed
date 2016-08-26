@@ -37,6 +37,7 @@
       <md-button
         ng-if="item.items"
         ng-click="item.open = !item.open"
+        ng-class="{'md-primary': vm.isActive(item.state)}"
       >
         <div layout="row" layout-align="space-between center">
           <div>{{::item.title}}</div>
