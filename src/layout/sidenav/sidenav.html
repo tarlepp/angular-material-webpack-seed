@@ -17,5 +17,57 @@
 </md-toolbar>
 
 <md-content role="navigation" flex>
-  nav here
+  <md-content data-ng-repeat="item in vm.items">
+    <md-menu-item>
+      <md-button
+        ng-if="item.state && !item.items"
+        ng-click="vm.menuItemService.goToPage(item)"
+        ng-class="{'md-primary': vm.isActive(item.state)}"
+      >
+        {{::item.title}}
+      </md-button>
+
+      <md-button
+        ng-if="!item.state && !item.items"
+        ng-disabled="true"
+      >
+        {{::item.title}}
+      </md-button>
+
+      <md-button
+        ng-if="item.items"
+        ng-click="item.open = !item.open"
+      >
+        <div layout="row" layout-align="space-between center">
+          <div>{{::item.title}}</div>
+          <div>
+            <i class="mdi"
+              ng-class="item.open ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+            ></i>
+          </div>
+        </div>
+      </md-button>
+    </md-menu-item>
+
+    <div ng-show="item.open">
+      <md-menu-item class="sub-menu"
+        ng-repeat="item in item.items"
+      >
+        <md-button
+          ng-if="item.state && !item.items"
+          ng-click="vm.menuItemService.goToPage(item)"
+          ng-class="{'md-primary': vm.isActive(item.state)}"
+        >
+          {{::item.title}}
+        </md-button>
+
+        <md-button
+          ng-if="!item.state && !item.items"
+          ng-disabled="true"
+        >
+          {{::item.title}}
+        </md-button>
+      </md-menu-item>
+    </div>
+  </md-content>
 </md-content>

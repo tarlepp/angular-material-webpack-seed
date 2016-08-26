@@ -1,0 +1,26 @@
+md-sidenav {
+  md-menu-item {
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+
+    &.sub-menu {
+      border-color: rgba(0, 0, 0, .1);
+    }
+  }
+
+  .md-button {
+    &.md-primary {
+      font-weight: bold;
+    }
+
+    i {
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  .sub-menu {
+    .md-button {
+      padding-left: 32px;
+    }
+  }
+}
