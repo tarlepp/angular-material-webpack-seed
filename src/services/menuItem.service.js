@@ -92,6 +92,8 @@ export default class MenuItemService {
       parameters = item.params;
     }
 
-    this.$state.go(item.state, parameters);
+    this.$mdSidenav('left').close();
+
+    return this.$state.go(item.state, parameters);
   }
 }
