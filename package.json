@@ -32,7 +32,7 @@
     "angular-sanitize": "1.5.8",
     "angular-ui-router": "0.3.1",
     "lodash": "4.15.0",
-    "mdi": "1.7.12",
+    "mdi": "1.7.22",
     "ngstorage": "0.3.11"
   },
   "devDependencies": {
@@ -50,7 +50,7 @@
     "codecov.io": "0.1.6",
     "coveralls": "2.11.12",
     "css-loader": "0.24.0",
-    "eslint": "3.3.1",
+    "eslint": "3.4.0",
     "eslint-config-airbnb-base": "5.0.3",
     "eslint-loader": "1.5.0",
     "eslint-plugin-import": "1.14.0",
