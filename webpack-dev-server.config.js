@@ -9,7 +9,7 @@ const config = makeWebpackConfig({
     historyApiFallback: true,
     compress: true,
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   debug: true,
 });
 
