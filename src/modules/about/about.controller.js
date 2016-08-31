@@ -33,7 +33,7 @@ export default class AboutController {
       },
       {
         title: 'Json Web Token',
-        image: require('./img/jwt-logo.png'),
+        image: require('./img/jwt-logo.jpg'),
         url: 'https://jwt.io/',
       },
     ];
