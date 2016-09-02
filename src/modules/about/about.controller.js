@@ -1,10 +1,23 @@
+// Imports
+import AboutItem from './aboutItem';
+
 /**
  * @ngInject
  */
 export default class AboutController {
+  /**
+   * Constructor of the class.
+   *
+   * @param {Window} $window
+   */
   constructor($window) {
     this.$window = $window;
 
+    /**
+     * List of AboutItem objects which is shown on about page
+     *
+     * @type {AboutItem[]}
+     */
     this.items = [
       {
         title: 'Angular.js',
@@ -36,10 +49,15 @@ export default class AboutController {
         image: require('./img/jwt-logo.jpg'),
         url: 'https://jwt.io/',
       },
-    ];
+    ].map(item => new AboutItem(item));
   }
 
-  open(item) {
+  /**
+   * Method to open selected item URL to new tab.
+   *
+   * @param {AboutItem} item
+   */
+  open(item: AboutItem) : void {
     this.$window.open(item.url, '_blank');
   }
 }
