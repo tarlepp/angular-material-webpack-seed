@@ -7,7 +7,12 @@
     "jasmine": true,
     "node": true
   },
+  "plugins": [
+    "flowtype"
+  ],
   "rules": {
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
     "import/no-unresolved": 1,
     "global-require": 0,
     "prefer-template": 1,
