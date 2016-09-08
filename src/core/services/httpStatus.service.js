@@ -2,269 +2,108 @@
  * @ngInject
  */
 export default class HttpStatusService {
+  // Constructor
+  constructor() {
+    this.messages = {
+      // 1xx Informational
+      100: 'continue',
+      101: 'Switching Protocols',
+      102: 'Processing (WebDAV; RFC 2518)',
+      // 2xx Success
+      200: 'OK',
+      201: 'Created',
+      202: 'Accepted',
+      203: 'Non-Authoritative Information (since HTTP/1.1)',
+      204: 'No Content',
+      205: 'Reset Content',
+      206: 'Partial Content',
+      207: 'Multi-Status (WebDAV; RFC 4918)',
+      208: 'Already Reported (WebDAV; RFC 5842)',
+      226: 'IM Used (RFC 3229)',
+      // 3xx Redirection
+      300: 'Multiple Choices',
+      301: 'Moved Permanently',
+      302: 'Found',
+      303: 'See Other',
+      304: 'Not Modified',
+      305: 'Use Proxy',
+      306: 'Switch Proxy',
+      307: 'Temporary Redirect',
+      308: 'Permanent Redirect (Experimental RFC; RFC 7238)',
+      // 4xx Client Error
+      400: 'Bad Request',
+      401: 'Unauthorized',
+      402: 'Payment Required',
+      403: 'Forbidden',
+      404: 'Not Found',
+      405: 'Method Not Allowed',
+      406: 'Not Acceptable',
+      407: 'Proxy Authentication Required',
+      408: 'Request Timeout',
+      409: 'Conflict',
+      410: 'Gone',
+      411: 'Length Required',
+      412: 'Precondition Failed',
+      413: 'Request Entity Too Large',
+      414: 'Request-URI Too Long',
+      415: 'Unsupported Media Type',
+      416: 'Requested Range Not Satisfiable',
+      417: 'Expectation Failed',
+      418: 'I\'m a teapot (RFC 2324)',
+      419: 'Authentication Timeout (not in RFC 2616)',
+      420: 'Method Failure (Spring Framework) / Enhance Your Calm (Twitter)',
+      422: 'Unprocessable Entity (WebDAV; RFC 4918)',
+      423: 'Locked (WebDAV; RFC 4918)',
+      424: 'Failed Dependency (WebDAV; RFC 4918)',
+      426: 'Upgrade Required',
+      428: 'Precondition Required (RFC 6585)',
+      429: 'Too Many Requests (RFC 6585)',
+      431: 'Request Header Fields Too Large (RFC 6585)',
+      440: 'Login Timeout (Microsoft)',
+      444: 'No Response (Nginx)',
+      449: 'Retry With (Microsoft)',
+      450: 'Blocked by Windows Parental Controls (Microsoft)',
+      451: 'Unavailable For Legal Reasons (Internet draft) / Redirect (Microsoft)',
+      494: 'Request Header Too Large (Nginx)',
+      495: 'Cert Error (Nginx)',
+      496: 'No Cert (Nginx)',
+      497: 'HTTP to HTTPS (Nginx)',
+      498: 'Token expired/invalid (Esri)',
+      499: 'Client Closed Request (Nginx) / Token required (Esri)',
+      // 5xx Server Error
+      500: 'Internal Server Error',
+      501: 'Not Implemented',
+      502: 'Bad Gateway',
+      503: 'Service Unavailable',
+      504: 'Gateway Timeout',
+      505: 'HTTP Version Not Supported',
+      506: 'Variant Also Negotiates (RFC 2295)',
+      507: 'Insufficient Storage (WebDAV; RFC 4918)',
+      508: 'Loop Detected (WebDAV; RFC 5842)',
+      509: 'Bandwidth Limit Exceeded (Apache bw/limited extension)',
+      510: 'Not Extended (RFC 2774)',
+      511: 'Network Authentication Required (RFC 6585)',
+      520: 'Origin Error (Cloudflare)',
+      521: 'Web server is down (Cloudflare)',
+      522: 'Connection timed out (Cloudflare)',
+      523: 'Proxy Declined Request (Cloudflare)',
+      524: 'A timeout occurred (Cloudflare)',
+      598: 'Network read timeout error (Unknown)',
+      599: 'Network connect timeout error (Unknown)',
+    };
+  }
+
   /**
    * Getter method for HTTP status code text.
    *
-   * @param {number|string} statusCode
+   * @param {number} statusCode
    * @returns {string}
    */
-  getStatusCodeText(statusCode) {
-    let output = '';
+  getStatusCodeText(statusCode: number) {
+    let output = `Unknown HTTP status '${statusCode}' what is this?`;
 
-    switch (parseInt(statusCode.toString(), 10)) {
-      // 1xx Informational
-      case 100:
-        output = 'Continue';
-        break;
-      case 101:
-        output = 'Switching Protocols';
-        break;
-      case 102:
-        output = 'Processing (WebDAV; RFC 2518)';
-        break;
-      // 2xx Success
-      case 200:
-        output = 'OK';
-        break;
-      case 201:
-        output = 'Created';
-        break;
-      case 202:
-        output = 'Accepted';
-        break;
-      case 203:
-        output = 'Non-Authoritative Information (since HTTP/1.1)';
-        break;
-      case 204:
-        output = 'No Content';
-        break;
-      case 205:
-        output = 'Reset Content';
-        break;
-      case 206:
-        output = 'Partial Content';
-        break;
-      case 207:
-        output = 'Multi-Status (WebDAV; RFC 4918)';
-        break;
-      case 208:
-        output = 'Already Reported (WebDAV; RFC 5842)';
-        break;
-      case 226:
-        output = 'IM Used (RFC 3229)';
-        break;
-      // 3xx Redirection
-      case 300:
-        output = 'Multiple Choices';
-        break;
-      case 301:
-        output = 'Moved Permanently';
-        break;
-      case 302:
-        output = 'Found';
-        break;
-      case 303:
-        output = 'See Other';
-        break;
-      case 304:
-        output = 'Not Modified';
-        break;
-      case 305:
-        output = 'Use Proxy';
-        break;
-      case 306:
-        output = 'Switch Proxy';
-        break;
-      case 307:
-        output = 'Temporary Redirect';
-        break;
-      case 308:
-        output = 'Permanent Redirect (Experimental RFC; RFC 7238)';
-        break;
-      // 4xx Client Error
-      case 400:
-        output = 'Bad Request';
-        break;
-      case 401:
-        output = 'Unauthorized';
-        break;
-      case 402:
-        output = 'Payment Required';
-        break;
-      case 403:
-        output = 'Forbidden';
-        break;
-      case 404:
-        output = 'Not Found';
-        break;
-      case 405:
-        output = 'Method Not Allowed';
-        break;
-      case 406:
-        output = 'Not Acceptable';
-        break;
-      case 407:
-        output = 'Proxy Authentication Required';
-        break;
-      case 408:
-        output = 'Request Timeout';
-        break;
-      case 409:
-        output = 'Conflict';
-        break;
-      case 410:
-        output = 'Gone';
-        break;
-      case 411:
-        output = 'Length Required';
-        break;
-      case 412:
-        output = 'Precondition Failed';
-        break;
-      case 413:
-        output = 'Request Entity Too Large';
-        break;
-      case 414:
-        output = 'Request-URI Too Long';
-        break;
-      case 415:
-        output = 'Unsupported Media Type';
-        break;
-      case 416:
-        output = 'Requested Range Not Satisfiable';
-        break;
-      case 417:
-        output = 'Expectation Failed';
-        break;
-      case 418:
-        output = 'I\'m a teapot (RFC 2324)';
-        break;
-      case 419:
-        output = 'Authentication Timeout (not in RFC 2616)';
-        break;
-      case 420:
-        output = 'Method Failure (Spring Framework) / Enhance Your Calm (Twitter)';
-        break;
-      case 422:
-        output = 'Unprocessable Entity (WebDAV; RFC 4918)';
-        break;
-      case 423:
-        output = 'Locked (WebDAV; RFC 4918)';
-        break;
-      case 424:
-        output = 'Failed Dependency (WebDAV; RFC 4918)';
-        break;
-      case 426:
-        output = 'Upgrade Required';
-        break;
-      case 428:
-        output = 'Precondition Required (RFC 6585)';
-        break;
-      case 429:
-        output = 'Too Many Requests (RFC 6585)';
-        break;
-      case 431:
-        output = 'Request Header Fields Too Large (RFC 6585)';
-        break;
-      case 440:
-        output = 'Login Timeout (Microsoft)';
-        break;
-      case 444:
-        output = 'No Response (Nginx)';
-        break;
-      case 449:
-        output = 'Retry With (Microsoft)';
-        break;
-      case 450:
-        output = 'Blocked by Windows Parental Controls (Microsoft)';
-        break;
-      case 451:
-        output = 'Unavailable For Legal Reasons (Internet draft) / Redirect (Microsoft)';
-        break;
-      case 494:
-        output = 'Request Header Too Large (Nginx)';
-        break;
-      case 495:
-        output = 'Cert Error (Nginx)';
-        break;
-      case 496:
-        output = 'No Cert (Nginx)';
-        break;
-      case 497:
-        output = 'HTTP to HTTPS (Nginx)';
-        break;
-      case 498:
-        output = 'Token expired/invalid (Esri)';
-        break;
-      case 499:
-        output = 'Client Closed Request (Nginx) / Token required (Esri)';
-        break;
-      // 5xx Server Error
-      case 500:
-        output = 'Internal Server Error';
-        break;
-      case 501:
-        output = 'Not Implemented';
-        break;
-      case 502:
-        output = 'Bad Gateway';
-        break;
-      case 503:
-        output = 'Service Unavailable';
-        break;
-      case 504:
-        output = 'Gateway Timeout';
-        break;
-      case 505:
-        output = 'HTTP Version Not Supported';
-        break;
-      case 506:
-        output = 'Variant Also Negotiates (RFC 2295)';
-        break;
-      case 507:
-        output = 'Insufficient Storage (WebDAV; RFC 4918)';
-        break;
-      case 508:
-        output = 'Loop Detected (WebDAV; RFC 5842)';
-        break;
-      case 509:
-        output = 'Bandwidth Limit Exceeded (Apache bw/limited extension)';
-        break;
-      case 510:
-        output = 'Not Extended (RFC 2774)';
-        break;
-      case 511:
-        output = 'Network Authentication Required (RFC 6585)';
-        break;
-      case 520:
-        output = 'Origin Error (Cloudflare)';
-        break;
-      case 521:
-        output = 'Web server is down (Cloudflare)';
-        break;
-      case 522:
-        output = 'Connection timed out (Cloudflare)';
-        break;
-      case 523:
-        output = 'Proxy Declined Request (Cloudflare)';
-        break;
-      case 524:
-        output = 'A timeout occurred (Cloudflare)';
-        break;
-      case 598:
-        output = 'Network read timeout error (Unknown)';
-        break;
-      case 599:
-        output = 'Network connect timeout error (Unknown)';
-        break;
-      default:
-        output = [
-          'Unknown HTTP status',
-          ' \'',
-          statusCode,
-          '\' what is this?',
-        ].join();
-        break;
+    if ({}.hasOwnProperty.call(this.messages, statusCode)) {
+      output = this.messages[statusCode];
     }
 
     return output;
