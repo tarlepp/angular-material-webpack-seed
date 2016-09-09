@@ -1,5 +1,7 @@
 /**
+ * @desc  This file contains core route + state change event handling.
  * @ngInject
+ *
  * @param {*}             $rootScope
  * @param {$state}        $state
  * @param {$localStorage} $localStorage
@@ -50,8 +52,8 @@ export default (
       bypass = true;
 
       // User don't have access to this state,
-      if ({}.hasOwnProperty.call(toState.data || {}, 'access') &&
-          !AuthService.authorize(toState.data.access)
+      if ({}.hasOwnProperty.call(toState.data || {}, 'access')
+          && !AuthService.authorize(toState.data.access)
       ) {
         LoggerService.error(`You don't have access to '${toState.title}' page.`);
 
