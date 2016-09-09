@@ -1,3 +1,4 @@
+// Imports
 import angular from 'angular';
 
 /**
@@ -37,6 +38,7 @@ export default class RouterHelper {
 
   /**
    * @ngInject
+   *
    * @param {*}             $rootScope
    * @param {$location}     $location
    * @param {$state}        $state
@@ -116,16 +118,8 @@ export default class RouterHelper {
      * @private
      */
     function _getErrorMessage(error, toState) {
-      return [
-        'Error routing to ',
-        _getDestination(toState),
-        '. ',
-        (error.data || ''),
-        '<br />',
-        (error.statusText || ''),
-        ': ',
-        (error.status || ''),
-      ].join('');
+      return `Error routing to ${_getDestination(toState)}. ${error.data || ''} <br /> 
+              ${error.statusText || ''}: ${error.status || ''}`;
     }
 
     /**
@@ -142,7 +136,7 @@ export default class RouterHelper {
           return;
         }
 
-        stateCounts.errors++;
+        stateCounts.errors += 1;
         handlingStateChangeError = true;
 
         // State requires authenticated user.
@@ -165,7 +159,7 @@ export default class RouterHelper {
      */
     function _updateDocumentTitle() {
       $rootScope.$on('$stateChangeSuccess', (event, toState) => {
-        stateCounts.changes++;
+        stateCounts.changes += 1;
         handlingStateChangeError = false;
 
         // data bind to <title>
