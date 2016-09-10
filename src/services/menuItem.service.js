@@ -1,4 +1,5 @@
-import _ from 'lodash';
+// Imports
+import MenuItem from './../entities/menuItem';
 
 /**
  * @ngInject
@@ -7,11 +8,11 @@ export default class MenuItemService {
   /**
    * Constructor of the class.
    *
-   * @param {$state}      $state
-   * @param {$mdSidenav}  $mdSidenav
-   * @param {AuthService} AuthService
-   * @param {UserService} UserService
-   * @param {UserRoles}   UserRoles
+   * @param {ui.router.state.$state}  $state
+   * @param {$mdSidenav}              $mdSidenav
+   * @param {AuthService}             AuthService
+   * @param {UserService}             UserService
+   * @param {UserRoles}               UserRoles
    */
   constructor(
     $state, $mdSidenav,
@@ -21,79 +22,89 @@ export default class MenuItemService {
     this.$mdSidenav = $mdSidenav;
     this.authService = AuthService;
     this.userService = UserService;
-    this.userRoles = UserRoles;
 
     // Actual menu items
     this.items = [
       {
         title: 'About',
         state: 'modules.about',
-        access: this.userRoles.ROLE_ANON,
+        access: UserRoles.ROLE_ANON,
       },
       {
         title: 'Profile',
         state: 'auth.profile',
-        access: this.userRoles.ROLE_LOGGED,
+        access: UserRoles.ROLE_LOGGED,
+      },
+      {
+        title: 'Examples',
+        state: 'modules.examples',
+        access: UserRoles.ROLE_USER,
+        items: [
+          {
+            title: 'Authors',
+            state: false,
+            access: UserRoles.ROLE_USER,
+          },
+          {
+            title: 'Books',
+            state: false,
+            access: UserRoles.ROLE_USER,
+          },
+        ],
       },
       {
         title: 'Login',
         state: 'auth.login',
-        access: this.userRoles.ROLE_ANON,
-        logged: false,
+        access: UserRoles.ROLE_ANON,
+        hideLogged: true,
       },
       {
         title: 'Logout',
         state: 'auth.logout',
-        access: this.userRoles.ROLE_LOGGED,
+        access: UserRoles.ROLE_LOGGED,
       },
-    ];
+    ].map(item => new MenuItem(item));
   }
 
   /**
    * Getter method for all menu items.
    *
-   * @returns {object[]}
+   * @returns {MenuItem[]}
    */
   getItems() {
-    const iterator = (item) => {
-      if ({}.hasOwnProperty.call(item, 'items')) {
-        item.items = _.filter(item.items, iterator);
+    const iterator = (item: MenuItem) => {
+      if (item.items.length) {
+        item.items.filter(iterator);
 
         if (item.items.length === 0) {
           return false;
         }
       }
 
-      if ({}.hasOwnProperty.call(item, 'logged')
-        && !item.logged
-      ) {
-        return !this.userService.getProfile();
+      let hasAccess = this.authService.authorize(item.access);
+
+      if (hasAccess && item.hideLogged) {
+        hasAccess = !this.userService.getProfile();
       }
 
-      return this.authService.authorize(item.access);
+      return hasAccess;
     };
 
-    return _.filter(this.items, iterator);
+    return this.items.filter(iterator);
   }
 
   /**
    * Method to change application state to another one.
    *
-   * @param {object}  item
-   * @param {object}  [params]
+   * @param {MenuItem}  item
+   * @param {Object}    [params]
+   * @returns {promise}
    */
-  goToPage(item, params = {}) {
-    let parameters = {};
-
-    if (_.isEmpty(params)
-      && {}.hasOwnProperty.call(item, 'params')
-      && !_.isEmpty(item.params)
-    ) {
-      parameters = item.params;
-    }
+  goToPage(item: MenuItem, params: Object = {}) {
+    const parameters = (Object.is({}, params) && !Object.is({}, item.params)) ? item.params : params;
 
     this.$mdSidenav('left').close();
 
-    return this.$state.go(item.state, parameters);
+    return (this.$state.current.name === item.state) ? this.$state.reload() : this.$state.go(item.state, parameters);
   }
 }
