@@ -1,14 +1,22 @@
 /**
+ * @desc  ExceptionHandler provider.
+ *
  * @ngInject
  */
 export default class ExceptionHandler {
+  // Constructor of the class.
   constructor() {
     this.config = {
       appErrorPrefix: undefined,
     };
   }
 
-  configure(appErrorPrefix) {
+  /**
+   * Configure method for the class.
+   *
+   * @param {string}  appErrorPrefix
+   */
+  configure(appErrorPrefix: string) {
     this.config.appErrorPrefix = appErrorPrefix;
   }
 

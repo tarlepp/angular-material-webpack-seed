@@ -1,5 +1,12 @@
 /**
+ * @desc  ExceptionHandler decorator.
+ *
  * @ngInject
+ *
+ * @param {$delegate}         $delegate
+ * @param {ExceptionHandler}  ExceptionHandler
+ * @param {LoggerService}     LoggerService
+ * @returns {decorator}
  */
 export default function ($delegate, ExceptionHandler, LoggerService) {
   return function decorator(exception, cause) {
@@ -12,6 +19,7 @@ export default function ($delegate, ExceptionHandler, LoggerService) {
     // Create exception message
     exception.message = [appErrorPrefix, exception.message].join(': ');
 
+    // Delegate exception
     $delegate(exception, cause);
 
     /**

@@ -1,4 +1,6 @@
 /**
+ * @desc  ExceptionFactory class.
+ *
  * @ngInject
  */
 export default class ExceptionFactory {

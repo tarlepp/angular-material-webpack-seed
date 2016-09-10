@@ -1,3 +1,4 @@
+// Imports
 import angular from 'angular';
 import logger from './../logger/logger.module';
 import ExceptionFactory from './exception.factory';
@@ -5,6 +6,8 @@ import ExceptionHandler from './exceptionHanler.provider';
 import ExceptionHandlerDecorator from './exceptionHandler.decorator';
 
 /**
+ * @desc  Module initialize.
+ *
  * @ngInject
  */
 export default angular
