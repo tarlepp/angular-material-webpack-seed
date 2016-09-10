@@ -20,7 +20,7 @@
   <md-content data-ng-repeat="item in vm.items">
     <md-menu-item>
       <md-button
-        ng-if="item.state && !item.items"
+        ng-if="item.state && item.items.length === 0"
         ng-click="vm.menuItemService.goToPage(item)"
         ng-class="{'md-primary': vm.isActive(item.state)}"
       >
@@ -28,14 +28,14 @@
       </md-button>
 
       <md-button
-        ng-if="!item.state && !item.items"
+        ng-if="!item.state && item.items.length === 0"
         ng-disabled="true"
       >
         {{::item.title}}
       </md-button>
 
       <md-button
-        ng-if="item.items"
+        ng-if="item.items.length"
         ng-click="item.open = !item.open"
         ng-class="{'md-primary': vm.isActive(item.state)}"
       >
@@ -55,7 +55,7 @@
         ng-repeat="item in item.items"
       >
         <md-button
-          ng-if="item.state && !item.items"
+          ng-if="item.state && item.items.length === 0"
           ng-click="vm.menuItemService.goToPage(item)"
           ng-class="{'md-primary': vm.isActive(item.state)}"
         >
@@ -63,7 +63,7 @@
         </md-button>
 
         <md-button
-          ng-if="!item.state && !item.items"
+          ng-if="!item.state && item.items.length === 0"
           ng-disabled="true"
         >
           {{::item.title}}
