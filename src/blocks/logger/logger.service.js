@@ -1,12 +1,14 @@
-import _ from 'lodash';
-
 /**
+ * @desc  LoggerService class.
+ *
  * @ngInject
  */
 export default class LoggerService {
   /**
-   * @param $log
-   * @param $injector
+   * Constructor of the class.
+   *
+   * @param {$log}      $log
+   * @param {$injector} $injector
    */
   constructor($log, $injector) {
     this.$log = $log;
@@ -14,46 +16,56 @@ export default class LoggerService {
   }
 
   /**
+   * Method to create error message.
+   *
    * @param {string}  message
-   * @param {object}  [data]
+   * @param {Object}  [data]
    * @param {string}  [title]
    */
-  error(message, data = {}, title = '') {
+  error(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
     this.$log.error(['Error:', message].join(' '), data, title);
   }
 
   /**
+   * Method to create info message.
+   *
    * @param {string}  message
    * @param {object}  [data]
    * @param {string}  [title]
    */
-  info(message, data = {}, title = '') {
+  info(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
     this.$log.info(['Info:', message].join(' '), data, title);
   }
 
   /**
+   * Method to create success message.
+   *
    * @param {string}  message
    * @param {object}  [data]
    * @param {string}  [title]
    */
-  success(message, data = {}, title = '') {
+  success(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
     this.$log.log(['Success:', message].join(' '), data, title);
   }
 
   /**
+   * Method to create warning message.
+   *
    * @param {string}  message
    * @param {object}  [data]
    * @param {string}  [title]
    */
-  warning(message, data = {}, title = '') {
+  warning(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
     this.$log.warn(['Warning:', message].join(' '), data, title);
   }
 
   /**
+   * Generic logger method.
+   *
    * @param {*} args
    */
   log(...args) {
@@ -61,17 +73,19 @@ export default class LoggerService {
   }
 
   /**
+   * Method to show toast.
+   *
    * @param {string}  message
    * @param {object}  [data]
    * @param {string}  [title]
    */
-  showToast(message, data = {}, title = '') {
+  showToast(message: string, data: Object = {}, title: string = '') {
     this.$injector
       .get('$mdToast')
       .showSimple([
         title,
         message,
-        (!_.isEmpty(data) ? data : ''),
+        (Object.keys(data).length ? data : ''),
       ].join(' '));
   }
 }
