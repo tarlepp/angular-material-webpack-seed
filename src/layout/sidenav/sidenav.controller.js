@@ -15,13 +15,14 @@ export default class SidenavController {
     MenuItemService
   ) {
     this.$mdSidenav = $mdSidenav;
+    this.menuItemService = MenuItemService;
 
     // Attach includes function to controller
     this.isActive = $state.includes;
 
     // For now we need a watcher for actual menu items - note that is $rootScope variable
     $scope.$watch('isAuthenticated', () => {
-      this.items = MenuItemService.getItems();
+      this.items = this.menuItemService.getItems();
     });
   }
 
