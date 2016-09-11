@@ -2,6 +2,12 @@
  * @ngInject
  */
 export default class ErrorInterceptor {
+  /**
+   * Constructor of the class.
+   *
+   * @param {$q}        $q
+   * @param {$injector} $injector
+   */
   constructor($q, $injector) {
     this.$q = $q;
     this.$injector = $injector;
@@ -22,11 +28,7 @@ export default class ErrorInterceptor {
     } else if (response.statusText) {
       message = response.statusText;
     } else if (response.status === 0) {
-      message = [
-        'CORS error with url \'',
-        response.config.url,
-        '\'',
-      ].join();
+      message = `CORS error with url '${response.config.url}'`;
     } else {
       message = this.$injector.get('HttpStatusService').getStatusCodeText(response.status);
     }
