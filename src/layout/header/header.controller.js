@@ -5,9 +5,9 @@ export default class HeaderController {
   /**
    * Constructor of the class
    *
-   * @param {$state}      $state
-   * @param {$mdSidenav}  $mdSidenav
-   * @param {AuthService} AuthService
+   * @param {ui.router.state.$state}  $state
+   * @param {$mdSidenav}              $mdSidenav
+   * @param {AuthService}             AuthService
    */
   constructor($state, $mdSidenav, AuthService) {
     this.$state = $state;
