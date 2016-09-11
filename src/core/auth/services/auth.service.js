@@ -33,7 +33,7 @@ export default class AuthService {
   /**
    * Method to authenticate given credentials against backend server.
    *
-   * @param {object}  credentials
+   * @param {Object}  credentials
    * @returns {*|Promise.<TResult>}
    */
   authenticate(credentials) {
@@ -78,7 +78,7 @@ export default class AuthService {
   /**
    * Method to store token data to local storage.
    *
-   * @param {object}  data
+   * @param {Object}  data
    * @param {boolean} [skipRefreshToken]
    */
   storeTokenData(data, skipRefreshToken = false) {

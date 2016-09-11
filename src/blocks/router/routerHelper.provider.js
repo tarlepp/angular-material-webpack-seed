@@ -2,6 +2,8 @@
 import angular from 'angular';
 
 /**
+ * @desc RouterHelper provider.
+ *
  * @ngInject
  */
 export default class RouterHelper {
@@ -30,19 +32,19 @@ export default class RouterHelper {
   /**
    * Method to override default config values.
    *
-   * @param {object} configOverride
+   * @param {Object} configOverride
    */
-  configure(configOverride) {
+  configure(configOverride: Object) {
     angular.extend(this.config, configOverride);
   }
 
   /**
    * @ngInject
    *
-   * @param {*}             $rootScope
-   * @param {$location}     $location
-   * @param {$state}        $state
-   * @param {LoggerService} LoggerService
+   * @param {*}                       $rootScope
+   * @param {$location}               $location
+   * @param {ui.router.state.$state}  $state
+   * @param {LoggerService}           LoggerService
    * @returns {{
    *    configureStates: configureStates,
    *    getStates: getStates,
@@ -69,14 +71,12 @@ export default class RouterHelper {
      * @name  configureStates
      * @desc  Implementation for configureStates method.
      *
-     * @param {object[]}  states
+     * @param {Object[]}  states
      * @param {string}    [otherwisePath]
      */
-    function configureStates(states, otherwisePath) {
+    function configureStates(states: Object[], otherwisePath: string = '') {
       // Iterate specified states, add resolves to each one and attach state to router
       states.forEach((state) => {
-        // state.config.resolve = angular.extend(state.config.resolve || {});
-
         $stateProvider.state(state.state, state.config);
       });
 
@@ -91,6 +91,8 @@ export default class RouterHelper {
     /**
      * @name  getStates
      * @desc  Implementation for getStates method.
+     *
+     * @returns {Object[]}
      */
     function getStates() {
       return $state.get();
@@ -101,23 +103,23 @@ export default class RouterHelper {
     /**
      * Method to get toState destination name.
      *
-     * @param   {IState|{title: string, name: string, loadedTemplateUrl: string}}  toState
+     * @param   {Object}  toState
      * @returns {*|string}
      * @private
      */
-    function _getDestination(toState) {
+    function _getDestination(toState: Object) {
       return (toState && (toState.title || toState.name || toState.loadedTemplateUrl)) || 'unknown target';
     }
 
     /**
      * Method to determine error message that is shown to user if router error happens.
      *
-     * @param   {object}  error
-     * @param   {IState}  toState
+     * @param   {Object}  error
+     * @param   {Object}  toState
      * @returns {string}
      * @private
      */
-    function _getErrorMessage(error, toState) {
+    function _getErrorMessage(error: Object, toState: Object) {
       return `Error routing to ${_getDestination(toState)}. ${error.data || ''} <br /> 
               ${error.statusText || ''}: ${error.status || ''}`;
     }

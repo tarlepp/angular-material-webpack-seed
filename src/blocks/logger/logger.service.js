@@ -31,7 +31,7 @@ export default class LoggerService {
    * Method to create info message.
    *
    * @param {string}  message
-   * @param {object}  [data]
+   * @param {Object}  [data]
    * @param {string}  [title]
    */
   info(message: string, data: Object = {}, title: string = '') {
@@ -43,7 +43,7 @@ export default class LoggerService {
    * Method to create success message.
    *
    * @param {string}  message
-   * @param {object}  [data]
+   * @param {Object}  [data]
    * @param {string}  [title]
    */
   success(message: string, data: Object = {}, title: string = '') {
@@ -55,7 +55,7 @@ export default class LoggerService {
    * Method to create warning message.
    *
    * @param {string}  message
-   * @param {object}  [data]
+   * @param {Object}  [data]
    * @param {string}  [title]
    */
   warning(message: string, data: Object = {}, title: string = '') {
@@ -76,7 +76,7 @@ export default class LoggerService {
    * Method to show toast.
    *
    * @param {string}  message
-   * @param {object}  [data]
+   * @param {Object}  [data]
    * @param {string}  [title]
    */
   showToast(message: string, data: Object = {}, title: string = '') {
