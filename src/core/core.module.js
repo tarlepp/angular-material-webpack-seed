@@ -1,3 +1,4 @@
+// Imports
 import angular from 'angular';
 import exception from './../blocks/exception/exception.module';
 import logger from './../blocks/logger/logger.module';
@@ -8,8 +9,13 @@ import services from './services/services.module';
 import config from './core.config';
 import routes from './core.routes';
 
+/**
+ * @desc  Module initialize.
+ *
+ * @ngInject
+ */
 export default angular
-  .module('core', [
+  .module('app.core', [
     exception,
     logger,
     router,

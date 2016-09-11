@@ -2,14 +2,14 @@
  * @desc  This file contains core route + state change event handling.
  * @ngInject
  *
- * @param {*}             $rootScope
- * @param {$state}        $state
- * @param {$localStorage} $localStorage
- * @param {jwtHelper}     jwtHelper
- * @param {RouterHelper}  RouterHelper
- * @param {AuthService}   AuthService
- * @param {UserService}   UserService
- * @param {LoggerService} LoggerService
+ * @param {*}                       $rootScope
+ * @param {ui.router.state.$state}  $state
+ * @param {$localStorage}           $localStorage
+ * @param {jwtHelper}               jwtHelper
+ * @param {RouterHelper}            RouterHelper
+ * @param {AuthService}             AuthService
+ * @param {UserService}             UserService
+ * @param {LoggerService}           LoggerService
  */
 export default (
   $rootScope, $state, $localStorage,
