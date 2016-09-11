@@ -1,3 +1,4 @@
+// Imports
 import ProfileController from './profile.controller';
 import UserRoles from './../constants/userRoles';
 import { profileData } from './profile.resolve';

@@ -5,8 +5,8 @@ export default class LoginController {
   /**
    * Constructor of the class.
    *
-   * @param {$state}      $state
-   * @param {AuthService} AuthService
+   * @param {ui.router.state.$state}  $state
+   * @param {AuthService}             AuthService
    */
   constructor($state, AuthService) {
     this.$state = $state;
@@ -20,9 +20,7 @@ export default class LoginController {
     this.reset();
   }
 
-  /**
-   * Method to make login request to specified backend.
-   */
+  // Method to make login request to specified backend.
   login() {
     this.loading = true;
 
@@ -40,9 +38,7 @@ export default class LoginController {
     ;
   }
 
-  /**
-   * Method to "reset" used credentials object.
-   */
+  // Method to "reset" used credentials object.
   reset() {
     this.credentials = {
       username: '',

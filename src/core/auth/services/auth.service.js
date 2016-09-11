@@ -5,14 +5,14 @@ export default class AuthService {
   /**
    * Constructor of the AuthService.
    *
-   * @param {$http}         $http
-   * @param {$state}        $state
-   * @param {$localStorage} $localStorage
-   * @param {authManager}   authManager
-   * @param {UserService}   UserService
-   * @param {LoggerService} LoggerService
-   * @param {UserRoles}     UserRoles
-   * @param {config}        config
+   * @param {$http}                   $http
+   * @param {ui.router.state.$state}  $state
+   * @param {$localStorage}           $localStorage
+   * @param {authManager}             authManager
+   * @param {UserService}             UserService
+   * @param {LoggerService}           LoggerService
+   * @param {UserRoles}               UserRoles
+   * @param {config}                  config
    */
   constructor(
     $http, $state, $localStorage,
@@ -36,7 +36,7 @@ export default class AuthService {
    * @param {Object}  credentials
    * @returns {*|Promise.<TResult>}
    */
-  authenticate(credentials) {
+  authenticate(credentials: Object) {
     return this.$http
       .post(`${this.config.API_URL}auth/getToken`, credentials)
       .then(
@@ -58,7 +58,7 @@ export default class AuthService {
    * @param {string} refreshToken
    * @returns {*|Promise.<TResult>}
    */
-  refreshToken(refreshToken) {
+  refreshToken(refreshToken: string) {
     return this.$http
       .post(
         `${this.config.API_URL}auth/refreshToken`,
@@ -81,7 +81,7 @@ export default class AuthService {
    * @param {Object}  data
    * @param {boolean} [skipRefreshToken]
    */
-  storeTokenData(data, skipRefreshToken = false) {
+  storeTokenData(data: Object, skipRefreshToken: boolean = false) {
     // Store JWT data
     this.$localStorage.token = data.token;
 
@@ -99,7 +99,7 @@ export default class AuthService {
    * @param {string} role
    * @returns {boolean}
    */
-  authorize(role) {
+  authorize(role: string) {
     // Anon routes are available for everyone
     if (role === this.roles.ROLE_ANON) {
       return true;
@@ -116,7 +116,7 @@ export default class AuthService {
    *
    * @param {boolean} [suppress]
    */
-  isAuthenticated(suppress = true) {
+  isAuthenticated(suppress: boolean = true) {
     if (!this.userService.getProfile() && !suppress) {
       this.logger.error('Auth error!');
     }
@@ -130,7 +130,7 @@ export default class AuthService {
    * @param {boolean} [suppress]
    * @returns {*|Promise.<TResult>}
    */
-  logout(suppress = false) {
+  logout(suppress: boolean = false) {
     if (!suppress) {
       this.logger.success('Logged out successfully.');
     }
