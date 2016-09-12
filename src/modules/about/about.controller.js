@@ -1,5 +1,5 @@
 // Imports
-import AboutItem from './aboutItem';
+import AboutItem from './../../entities/aboutItem';
 
 /**
  * @ngInject
@@ -26,7 +26,7 @@ export default class AboutController {
       },
       {
         title: 'Angular Material',
-        image: require('./img/angular-materia-logo.png'),
+        image: require('./img/angular-material-logo.png'),
         url: 'https://material.angularjs.org',
       },
       {
