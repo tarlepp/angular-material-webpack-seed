@@ -8,8 +8,6 @@ export default () => {};
 export function profileData(UserService) {
   return UserService
     .fetchProfile()
-    .then(
-      (response) => response.data
-    )
+    .then(response => response.data)
   ;
 }

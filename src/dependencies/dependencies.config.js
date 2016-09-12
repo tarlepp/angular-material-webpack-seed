@@ -24,7 +24,7 @@ export default ($httpProvider, $mdThemingProvider, jwtOptionsProvider) => {
   jwtOptionsProvider.config({
     tokenGetter: [
       '$localStorage',
-      ($localStorage) => $localStorage.token,
+      $localStorage => $localStorage.token,
     ],
     whiteListedDomains: config.WHITELIST_DOMAINS,
   });
