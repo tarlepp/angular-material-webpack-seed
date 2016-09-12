@@ -2,6 +2,7 @@
 import MenuItem from './../entities/menuItem';
 
 /**
+ * @desc  MenuItemService class.
  * @ngInject
  */
 export default class MenuItemService {
