@@ -1,3 +1,4 @@
+// Get configuration values
 const config = require('./../config/config.json');
 
 /**
@@ -7,7 +8,7 @@ const config = require('./../config/config.json');
  *
  * @param {$httpProvider}       $httpProvider
  * @param {$mdThemingProvider}  $mdThemingProvider
- * @param {jwtOptionsProvider}  jwtOptionsProvider
+ * @param {jwtOptions}          jwtOptionsProvider
  */
 export default ($httpProvider, $mdThemingProvider, jwtOptionsProvider) => {
   // Attach JWT interceptor
@@ -20,12 +21,9 @@ export default ($httpProvider, $mdThemingProvider, jwtOptionsProvider) => {
     .accentPalette('blue')
   ;
 
-  // Configure JWT options for tokenGetter
+  // Configure JWT options for tokenGetter and white listed domains
   jwtOptionsProvider.config({
-    tokenGetter: [
-      '$localStorage',
-      $localStorage => $localStorage.token,
-    ],
+    tokenGetter: ['$localStorage', $localStorage => $localStorage.token],
     whiteListedDomains: config.WHITELIST_DOMAINS,
   });
 };
