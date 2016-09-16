@@ -20,7 +20,9 @@
   "keywords": [
     "angular",
     "material",
-    "webpack"
+    "webpack",
+    "es2015",
+    "babel"
   ],
   "dependencies": {
     "angular": "1.5.8",
