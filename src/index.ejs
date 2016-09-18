@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1" />
 
-    <base href="/" />
+    <base href="<%= htmlWebpackPlugin.options.baseHref %>" />
 
     <title data-ng-bind="title"></title>
 
     <link href="//fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic" rel="stylesheet" type="text/css" />
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link href="/_assets/main.css" rel="stylesheet"></head>
+  </head>
 
   <body layout="row"
     data-ng-cloak
@@ -31,5 +31,5 @@
 
       <footer id="footer" data-ui-view="footer"></footer>
     </div>
-  <script type="text/javascript" src="/_assets/main.js"></script></body>
+  </body>
 </html>

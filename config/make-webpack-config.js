@@ -1,9 +1,12 @@
+'use strict';
+
 const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (options) {
   const entry = {
@@ -59,10 +62,11 @@ module.exports = function (options) {
   const modulesDirectories = ['web_modules', 'node_modules'];
   const extensions = ['', '.web.js', '.js', '.jsx'];
   const root = path.join(__dirname, 'app');
-  const publicPath = '/_assets/';
+  const publicPath = (options.publicPath ? options.publicPath : '')  + '/_assets/';
+  const directory = options.path ? options.path : 'public';
 
   const output = {
-    path: path.join(__dirname, 'public', '_assets'),
+    path: path.join(__dirname, '..', directory, '_assets'),
     publicPath,
     filename: `[name].js${(options.longTermCaching ? '?[chunkhash]' : '')}`,
     chunkFilename: (options.devServer ? '[id].js' : '[name].js') + (options.longTermCaching ? '?[chunkhash]' : ''),
@@ -77,20 +81,21 @@ module.exports = function (options) {
   let constants;
 
   try {
-    constants = require('./src/config/config.json');
+    constants = require('./../src/config/config.json');
   } catch (error) {
     constants = {
       "API_URL": process.env.API_URL || "http://localhost/",
+      "WHITELIST_DOMAINS": [ "localhost" ],
     }
   }
   _.forOwn(constants, (value, key) => {
     constants[key] = JSON.stringify(value);
   });
 
-  constants['VERSION'] = JSON.stringify(require('./package.json').version);
+  constants['VERSION'] = JSON.stringify(require('./../package.json').version);
 
   const plugins = [
-    function statsPlugin() {
+    function () {
       this.plugin('done', (stats) => {
         const jsonStats = stats.toJson({
           chunkModules: true,
@@ -100,15 +105,26 @@ module.exports = function (options) {
         jsonStats.publicPath = publicPath;
 
         if (!options.prerender) {
-          require('fs').writeFileSync(path.join(__dirname, 'build', 'stats.json'), JSON.stringify(jsonStats));
+          require('fs').writeFileSync(path.join(__dirname, '..', 'build', 'stats.json'), JSON.stringify(jsonStats));
         } else {
-          require('fs').writeFileSync(path.join(__dirname, 'build', 'server', 'stats.json'), JSON.stringify(jsonStats));
+          require('fs').writeFileSync(path.join(__dirname, '..', 'build', 'server', 'stats.json'), JSON.stringify(jsonStats));
         }
       });
     },
     new webpack.PrefetchPlugin('angular'),
     new webpack.DefinePlugin(constants),
+    new HtmlWebpackPlugin({
+      filename: './../index.html',
+      template: './src/index.ejs',
+      baseHref: options.baseHref ? options.baseHref : '/',
+    }),
   ];
+
+  if (options.plugins) {
+    for ( const plugin of options.plugins ) {
+      plugins.push(plugin);
+    }
+  }
 
   if (options.commonsChunk && !options.cover) {
     plugins.push(
@@ -145,6 +161,7 @@ module.exports = function (options) {
     plugins.push(
       new NgAnnotatePlugin({
         add: true,
+        sourceMap: true
       }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
