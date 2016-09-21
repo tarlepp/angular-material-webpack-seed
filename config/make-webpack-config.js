@@ -232,6 +232,11 @@ module.exports = function (options) {
           test: /\.jsx?$/,
           loaders: ['eslint'],
           include: path.join(__dirname, 'src'),
+        },
+        {
+          test: /\.scss$/,
+          loader: "scsslint",
+          exclude: /node_modules/
         }
       ],
       loaders: ignoreLoaders
