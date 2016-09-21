@@ -1,3 +1,6 @@
+# SCSS linter rules
+#
+# See https://github.com/brigade/scss-lint/blob/master/config/default.yml for defaults
 linters:
 
   IdSelector:
