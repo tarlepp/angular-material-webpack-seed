@@ -1,12 +1,15 @@
+$color1: rgba(0, 0, 0, .2);
+$color2: rgba(0, 0, 0, .1);
+
 md-sidenav {
   md-menu-item {
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    border-bottom: 1px solid $color1;
 
     &.sub-menu {
-      border-color: rgba(0, 0, 0, .1);
+      border-color: $color2;
 
       &:last-child {
-        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        border-bottom: 1px solid $color1;
       }
     }
   }
