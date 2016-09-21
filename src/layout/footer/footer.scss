@@ -3,9 +3,9 @@ footer {
     min-height: 32px;
 
     .md-toolbar-tools {
+      font-size: 12px;
       height: 32px;
       max-height: 32px;
-      font-size: 12px;
     }
 
     .md-button {
@@ -13,7 +13,7 @@ footer {
       text-transform: inherit;
     }
 
-    .mdi:before {
+    .mdi::before {
       font-size: 12px;
       margin-right: 4px;
     }
