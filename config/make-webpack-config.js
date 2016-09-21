@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SplitByPathPlugin = require('webpack-split-by-path');
 
 module.exports = function (options) {
   const entry = {
@@ -118,21 +119,18 @@ module.exports = function (options) {
       template: './src/index.ejs',
       baseHref: options.baseHref ? options.baseHref : '/',
     }),
+    new SplitByPathPlugin([
+      {
+        name: 'vendor',
+        path: path.resolve(__dirname, '..', 'node_modules')
+      },
+    ]),
   ];
 
   if (options.plugins) {
     for ( const plugin of options.plugins ) {
       plugins.push(plugin);
     }
-  }
-
-  if (options.commonsChunk && !options.cover) {
-    plugins.push(
-      new webpack.optimize.CommonsChunkPlugin(
-        'commons',
-        `commons.js${(options.longTermCaching ? '?[chunkhash]' : '')}`
-      )
-    );
   }
 
   stylesheetLoaders = stylesheetLoaders.map((loaderIn) => {

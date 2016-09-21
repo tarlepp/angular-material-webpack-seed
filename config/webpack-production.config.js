@@ -5,13 +5,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const makeWebpackConfig = require('./make-webpack-config');
 
 const config = makeWebpackConfig({
-  commonsChunk: true,
   longTermCaching: true,
   separateStylesheet: true,
   minimize: true,
   devtool: false,
   path: 'dist',
   publicPath: '/dist',
+  baseHref: '/dist/',
   plugins: [
     new CleanWebpackPlugin(
         ['dist'],
