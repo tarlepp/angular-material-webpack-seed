@@ -7,14 +7,10 @@
 
   md-input-container {
     margin: 0;
-
-    &.md-input-invalid > md-icon {
-      color: red;
-    }
   }
 
   md-progress-circular {
-    position: absolute;
     margin: 60px 0 0 125px;
+    position: absolute;
   }
 }

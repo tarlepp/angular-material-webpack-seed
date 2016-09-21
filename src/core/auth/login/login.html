@@ -7,18 +7,18 @@
     <div class="login md-padding md-whiteframe-z3">
       <md-progress-circular ng-if="vm.loading" md-mode="indeterminate"></md-progress-circular>
 
-      <form name="loginForm" method="post" novalidate="novalidate" layout="column"
+      <form name="loginForm" method="post" novalidate="novalidate" autocomplete="off" layout="column"
         data-ng-submit="vm.login()"
         data-ng-class="vm.loading ? 'opacity-50' : ''"
       >
         <h3 class="md-title text-center">Login</h3>
 
-        <md-input-container class="md-icon-float md-block">
+        <md-input-container class=" md-block">
           <label>Username or email</label>
 
-          <md-icon>person</md-icon>
+          <md-icon data-ng-class="{'md-warn': loginForm.username.$invalid && loginForm.password.$touched}">person</md-icon>
 
-          <input type="text" required="required"
+          <input type="text" required="required" name="username"
             data-ng-model="vm.credentials.username"
             data-ng-disabled="vm.loading"
           />
@@ -27,9 +27,9 @@
         <md-input-container class="md-icon-float md-block">
           <label>Password</label>
 
-          <md-icon>security</md-icon>
+          <md-icon data-ng-class="{'md-warn': loginForm.password.$invalid && loginForm.password.$touched}">security</md-icon>
 
-          <input type="password" required="required"
+          <input type="password" required="required" name="password"
             data-ng-model="vm.credentials.password"
             data-ng-disabled="vm.loading"
           />
