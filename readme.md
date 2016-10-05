@@ -20,11 +20,14 @@ Table of Contents
       * [Endpoints / actions:](#endpoints--actions)
       * [JWT handling](#jwt-handling)
       * [CORS support](#cors-support)
-    * [Example backend](#example-backend)
+      * [Example backend](#example-backend)
     * [Angular specific conventions](#angular-specific-conventions)
     * [Directives](#directives)
 
+---
+
 # What is this
+Modern seed for "legacy" Angular (1.x) applications. With seed this you can use [ES2015](https://babeljs.io/docs/learn-es2015/) to write your frontend application.
 
 ## Includes following
 * [webpack](http://webpack.github.io) (modules, assets bundling)
@@ -40,15 +43,30 @@ Table of Contents
 * Auth; Login, Authorization, User roles with routes 
 * Common; HTTP error interceptor, 
 
-# Usage
-1. Install dependencies `npm install`
-2. Start dev server `npm run dev-server` open [http://localhost:3000](http://localhost:3000)
-3. Lint your code `npm run lint`
-4. Run unit tests `npm run test`
-5. Create build for deployment `npm run build` for production build, or `npm run build-dev` for development build
+---
 
-## Notes
-* NodeJS 6+ is required.
+# Installation, configure and usage
+## Preconditions
+First of all you have to install `npm` and `node.js` to your box - note that `NodeJS 6+` is required. See following links to help you with installation:
+* [Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/)
+* [Node Version Manager](https://github.com/creationix/nvm#installation)
+
+## Installation
+Open your shell/terminal and navigate to root of application folder and run following command:
+```bash
+npm install
+```
+
+## Configuration
+Copy ```[./src/config/config.json_example](./src/config/config.json_example)``` file to ```./src/config/config.json``` and make necessary changes to it. 
+
+## Usage
+Application contains following commands that you can use
+* `npm run dev-server` => starts dev servers, open [http://localhost:3000](http://localhost:3000)
+* `npm run lint` => Lint your code under `.src` folder
+* `npm run test` => Run unit tests
+* `npm run build` => create build for production deployment, output will be generated to `dist` folder
+* `npm run build-dev` => create build for development deployment, output will be generated to `public` folder
 
 ---
 
@@ -135,7 +153,7 @@ Example of decoded JsonWebToken:
 ### CORS support
 Your backend should have CORS enabled if you're going to host back- and frontend in different domains.
 
-## Example backend
+### Example backend
 You can find simple backend solution [here](https://github.com/tarlepp/symfony-backend) which implements all required for this frontend application.
 
 ## Angular specific conventions
