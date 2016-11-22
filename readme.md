@@ -8,11 +8,15 @@
 Table of Contents
 =================
   * [Modern app seed for legacy Angular apps (1.x)](#modern-app-seed-for-legacy-angular-apps-1x)
+  * [Table of Contents](#table-of-contents)
   * [What is this](#what-is-this)
     * [Includes following](#includes-following)
     * [Application specified stuff](#application-specified-stuff)
-  * [Usage](#usage)
-    * [Notes](#notes)
+  * [Installation, configure and usage](#installation-configure-and-usage)
+    * [Preconditions](#preconditions)
+    * [Installation](#installation)
+    * [Configuration](#configuration)
+    * [Usage](#usage)
   * [Getting started](#getting-started)
   * [Usage advice](#usage-advice)
     * [Directory layout](#directory-layout)
@@ -23,6 +27,8 @@ Table of Contents
       * [Example backend](#example-backend)
     * [Angular specific conventions](#angular-specific-conventions)
     * [Directives](#directives)
+  * [Author](#author)
+  * [License](#license)
 
 ---
 
@@ -176,3 +182,11 @@ Application organisation rules:
 2. Use controllerAs syntax 
 3. Controller should act as ViewModel, use $scope only if you need it
 4. All model layer (data fetching, business logic) should be in services
+
+# Author
+Tarmo Leppänen
+
+# License
+[The MIT License (MIT)](LICENSE)
+
+Copyright (c) 2016 Tarmo Leppänen
