@@ -17,7 +17,7 @@ export default class MenuItemService {
    */
   constructor(
     $state, $mdSidenav,
-    AuthService, UserService, UserRoles
+    AuthService, UserService, UserRoles,
   ) {
     this.$state = $state;
     this.$mdSidenav = $mdSidenav;

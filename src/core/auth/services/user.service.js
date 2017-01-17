@@ -14,7 +14,7 @@ export default class UserService {
   constructor(
     $rootScope, $http, $localStorage,
     jwtHelper,
-    config
+    config,
   ) {
     this.$rootScope = $rootScope;
     this.$http = $http;

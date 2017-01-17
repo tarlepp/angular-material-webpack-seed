@@ -62,7 +62,7 @@ module.exports = function (options) {
   const externals = [];
   const modulesDirectories = ['web_modules', 'node_modules'];
   const extensions = ['', '.web.js', '.js', '.jsx'];
-  const root = path.join(__dirname, 'app');
+  const root = path.join(__dirname, '..', 'src');
   const publicPath = (options.publicPath ? options.publicPath : '')  + '/_assets/';
   const directory = options.path ? options.path : 'public';
 
@@ -231,12 +231,13 @@ module.exports = function (options) {
         {
           test: /\.jsx?$/,
           loaders: ['eslint'],
-          include: path.join(__dirname, 'src'),
+          include: path.join(__dirname, '..', 'src'),
         },
         {
           test: /\.scss$/,
           loader: "scsslint",
-          exclude: /node_modules/
+          exclude: /node_modules/,
+          include: path.join(__dirname, '..', 'src'),
         }
       ],
       loaders: ignoreLoaders
@@ -250,7 +251,7 @@ module.exports = function (options) {
     devtool: options.devtool,
     debug: options.debug,
     resolveLoader: {
-      root: path.join(__dirname, 'node_modules'),
+      root: path.join(__dirname, '..', 'node_modules'),
       alias: aliasLoader,
     },
     externals,

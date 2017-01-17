@@ -7,7 +7,7 @@ const makeWebpackConfig = require('./make-webpack-config');
 const config = makeWebpackConfig({
   devtool: 'source-map',
   separateStylesheet: true,
-  debug: true,
+  debug: false,
   plugins: [
     new CleanWebpackPlugin(
         ['public', 'build'],

@@ -18,7 +18,7 @@ export default class AuthService {
     $http, $state, $localStorage,
     authManager,
     UserService, LoggerService,
-    UserRoles, config
+    UserRoles, config,
   ) {
     this.$http = $http;
     this.$state = $state;
@@ -47,7 +47,7 @@ export default class AuthService {
           this.logger.success('Logged in successfully.');
 
           return response;
-        }
+        },
       )
     ;
   }
@@ -63,14 +63,14 @@ export default class AuthService {
       .post(
         `${this.config.API_URL}auth/refreshToken`,
         { refresh_token: refreshToken },
-        { skipAuthorization: true, skipErrorMessage: true }
+        { skipAuthorization: true, skipErrorMessage: true },
       )
       .then(
         (response) => {
           this.storeTokenData(response.data, true);
 
           return response;
-        }
+        },
       )
     ;
   }

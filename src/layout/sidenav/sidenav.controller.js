@@ -12,7 +12,7 @@ export default class SidenavController {
    */
   constructor(
     $scope, $state, $mdSidenav,
-    MenuItemService
+    MenuItemService,
   ) {
     this.$mdSidenav = $mdSidenav;
     this.menuItemService = MenuItemService;

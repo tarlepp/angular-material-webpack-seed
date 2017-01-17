@@ -14,7 +14,7 @@
 export default (
   $rootScope, $state, $localStorage,
   jwtHelper,
-  RouterHelper, AuthService, UserService, LoggerService
+  RouterHelper, AuthService, UserService, LoggerService,
 ) => {
   const states = [{
     state: '404',

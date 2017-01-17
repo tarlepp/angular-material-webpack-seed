@@ -7,7 +7,7 @@ const config = makeWebpackConfig({
     host: '0.0.0.0',
     port: 3000,
     historyApiFallback: true,
-    compress: true,
+    compress: false,
   },
   devtool: 'source-map',
   debug: true,
