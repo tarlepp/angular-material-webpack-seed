@@ -57,7 +57,7 @@ export default class AboutController {
    *
    * @param {AboutItem} item
    */
-  open(item: AboutItem) : void {
+  open(item: AboutItem): void {
     this.$window.open(item.url, '_blank');
   }
 }

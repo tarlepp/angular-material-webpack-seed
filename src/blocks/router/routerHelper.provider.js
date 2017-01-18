@@ -7,6 +7,8 @@ import angular from 'angular';
  * @ngInject
  */
 export default class RouterHelper {
+  config: any;
+
   /**
    * Constructor for the class.
    *
@@ -20,6 +22,7 @@ export default class RouterHelper {
     this.$urlRouterProvider = $urlRouterProvider;
 
     // We want to use HTML5 mode with routing
+    // noinspection JSUnresolvedFunction
     this.$locationProvider.html5Mode(true);
 
     // Default config for routerHelper
@@ -38,13 +41,14 @@ export default class RouterHelper {
     angular.extend(this.config, configOverride);
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * @ngInject
    *
-   * @param {*}                       $rootScope
-   * @param {$location}               $location
-   * @param {ui.router.state.$state}  $state
-   * @param {LoggerService}           LoggerService
+   * @param {*}             $rootScope
+   * @param {$location}     $location
+   * @param {$state}        $state
+   * @param {LoggerService} LoggerService
    * @returns {{
    *    configureStates: configureStates,
    *    getStates: getStates,
@@ -95,6 +99,7 @@ export default class RouterHelper {
      * @returns {Object[]}
      */
     function getStates() {
+      // noinspection JSUnresolvedFunction
       return $state.get();
     }
 
@@ -104,11 +109,11 @@ export default class RouterHelper {
      * Method to get toState destination name.
      *
      * @param   {Object}  toState
-     * @returns {*|string}
+     * @returns {boolean|string}
      * @private
      */
     function _getDestination(toState: Object) {
-      return (toState && (toState.title || toState.name || toState.loadedTemplateUrl)) || 'unknown target';
+      return (toState && (toState.title || toState.name)) || 'unknown target';
     }
 
     /**
@@ -160,7 +165,7 @@ export default class RouterHelper {
      * @private
      */
     function _updateDocumentTitle() {
-      $rootScope.$on('$stateChangeSuccess', (event, toState) => {
+      $rootScope.$on('$stateChangeSuccess', (event: any, toState: any) => {
         stateCounts.changes += 1;
         handlingStateChangeError = false;
 

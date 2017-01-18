@@ -4,10 +4,14 @@
  * @ngInject
  */
 export default class ExceptionHandler {
+  config: {
+    appErrorPrefix: string
+  };
+
   // Constructor of the class.
   constructor() {
     this.config = {
-      appErrorPrefix: undefined,
+      appErrorPrefix: '',
     };
   }
 
@@ -20,6 +24,7 @@ export default class ExceptionHandler {
     this.config.appErrorPrefix = appErrorPrefix;
   }
 
+  // noinspection JSUnusedGlobalSymbols
   $get() {
     return {
       config: this.config,

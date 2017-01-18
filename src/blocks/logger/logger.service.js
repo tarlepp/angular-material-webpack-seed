@@ -24,6 +24,8 @@ export default class LoggerService {
    */
   error(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
+
+    // noinspection JSUnresolvedFunction
     this.$log.error(['Error:', message].join(' '), data, title);
   }
 
@@ -36,6 +38,8 @@ export default class LoggerService {
    */
   info(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
+
+    // noinspection JSUnresolvedFunction
     this.$log.info(['Info:', message].join(' '), data, title);
   }
 
@@ -48,6 +52,8 @@ export default class LoggerService {
    */
   success(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
+
+    // noinspection JSUnresolvedFunction
     this.$log.log(['Success:', message].join(' '), data, title);
   }
 
@@ -60,15 +66,19 @@ export default class LoggerService {
    */
   warning(message: string, data: Object = {}, title: string = '') {
     this.showToast(message, data, title);
+
+    // noinspection JSUnresolvedFunction
     this.$log.warn(['Warning:', message].join(' '), data, title);
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Generic logger method.
    *
    * @param {*} args
    */
   log(...args) {
+    // noinspection JSUnresolvedFunction
     this.$log.log(args);
   }
 
@@ -80,6 +90,7 @@ export default class LoggerService {
    * @param {string}  [title]
    */
   showToast(message: string, data: Object = {}, title: string = '') {
+    // noinspection JSUnresolvedFunction
     this.$injector
       .get('$mdToast')
       .showSimple([
