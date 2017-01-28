@@ -82,13 +82,14 @@ module.exports = function (options) {
   let constants;
 
   try {
-    constants = require('./../src/config/config.json');
+    constants = require('../src/config/config.json');
   } catch (error) {
     constants = {
       "API_URL": process.env.API_URL || "http://localhost/",
       "WHITELIST_DOMAINS": [ "localhost" ],
     }
   }
+
   _.forOwn(constants, (value, key) => {
     constants[key] = JSON.stringify(value);
   });
@@ -235,7 +236,7 @@ module.exports = function (options) {
         },
         {
           test: /\.scss$/,
-          loader: "scsslint",
+          loader: 'scsslint',
           exclude: /node_modules/,
           include: path.join(__dirname, '..', 'src'),
         }

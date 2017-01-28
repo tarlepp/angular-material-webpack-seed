@@ -10,8 +10,8 @@ const config = makeWebpackConfig({
   minimize: true,
   devtool: false,
   path: 'dist',
-  publicPath: '/dist',
-  baseHref: '/dist/',
+  publicPath: '',
+  baseHref: '/',
   plugins: [
     new CleanWebpackPlugin(
         ['dist'],
